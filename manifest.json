@@ -1,0 +1,15 @@
+{
+	"manifest_version": 2,
+	
+	"name": "Automatic Downloader",
+	"description": "Automatic Downloader which will transparently download the files from the desired websites",
+	
+	"version": "1.0",
+	
+	"permissions": [ "http://*/*" ],
+	
+	"browser_action": {
+		"default_icon": "icon.jpg",
+		"default_popup": "popup.html"
+	}
+}
