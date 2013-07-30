@@ -1,6 +1,6 @@
 //This function reads the links from a given TrackedWebsite
 
-function retrieveFilesURLS(url){
+function retrieveFilesURLs(url){
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", url, false);
@@ -33,7 +33,7 @@ function retrieveFilesURLS(url){
 
 var trackedWebsite = function(url){
 	return {
-		get get_Url() {
+		get get_URL() {
 			return url;
 		}
 	}
@@ -42,17 +42,21 @@ var trackedWebsite = function(url){
 // }
 
 
-
-
-
 //printURLs receives an array of TrackedWebsites and print the urls on the main popup
+//It prints also the button to download the files from that website
 function printURLs(websites){
 	var i;
 	var elem = document.getElementById("websitesList");
 	for (i = 0; i<websites.length; i++){ 	
 		var node = document.createElement("li");
 		var url = document.createTextNode(websites[i].get_Url);
+		var downloadButton = document.createElement('input');
+		downloadButton.setAttribute('type','button');
+		downloadButton.setAttribute('name','down'+i);
+		downloadButton.setAttribute('value','DL');
+		//downloadButton.onclick=downloadFiles(retrieveFilesURLs(websites[i].get_URL));
 		node.appendChild(url);
+		node.appendChild(downloadButton);
 		elem.appendChild(node);
 	}
 }
@@ -75,10 +79,10 @@ function downloadFiles(files){
 
 function main(){
 	var websites = new Array();
-	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
-	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
-	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
-	localStorage.websites=JSON.stringify(websites);
+	//websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
+	//websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
+	//websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
+	//localStorage.websites=JSON.stringify(websites);
 	websites=JSON.parse(localStorage.websites);
 	printURLs(websites);
 }
