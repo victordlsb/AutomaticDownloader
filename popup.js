@@ -1,3 +1,4 @@
+//This function reads the links from a given TrackedWebsite
 
 function retrieveFilesURLS(url){
 	
@@ -26,11 +27,34 @@ function retrieveFilesURLS(url){
 }
 
 
+//To put in trackedWebsite.js {
+// trackedWebsite: does not use the new to create the object trackedWebsite. 
+//Creates an object with private parameters only accessible by the getter 
 
-function printURLs(){
-//	document.write("hello world");
-	var files = retrieveFilesURLS('http://www.dcs.bbk.ac.uk/courses/msccs/');
-	downloadFiles(files);
+var trackedWebsite = function(url){
+	return {
+		get_url: function () {
+			return url;
+		}
+	}
+}
+
+// }
+
+
+
+
+
+//printURLs receives an array of TrackedWebsites and print the urls on the main popup
+function printURLs(websites){
+	var i;
+	var elem = document.getElementById("websitesList");
+	for (i = 0; i<websites.length; i++){ 	
+		var node = document.createElement("li");
+		var url = document.createTextNode(websites[i].get_url());
+		node.appendChild(url);
+		elem.appendChild(node);
+	}
 }
 
 function downloadFiles(files){
@@ -40,9 +64,25 @@ function downloadFiles(files){
 		chrome.downloads.download({url: files[i].href, saveAs: false});
 	}
 }
-	
+
+//This function loads everything
+
+/*Test websites 
+'http://www.dcs.bbk.ac.uk/courses/'
+'http://www.dcs.bbk.ac.uk/courses/msccs/'
+'http://www.dcs.bbk.ac.uk/courses/mscinfo/'
+*/
+
+function main(){
+	var websites = new Array();
+	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
+	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
+	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
+	printURLs(websites);
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
-	printURLs();
+	main();
 });
 
