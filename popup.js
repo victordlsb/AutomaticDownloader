@@ -33,7 +33,7 @@ function retrieveFilesURLS(url){
 
 var trackedWebsite = function(url){
 	return {
-		get_url: function () {
+		get get_Url() {
 			return url;
 		}
 	}
@@ -51,7 +51,7 @@ function printURLs(websites){
 	var elem = document.getElementById("websitesList");
 	for (i = 0; i<websites.length; i++){ 	
 		var node = document.createElement("li");
-		var url = document.createTextNode(websites[i].get_url());
+		var url = document.createTextNode(websites[i].get_Url);
 		node.appendChild(url);
 		elem.appendChild(node);
 	}
@@ -78,6 +78,8 @@ function main(){
 	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
 	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
 	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
+	localStorage.websites=JSON.stringify(websites);
+	websites=JSON.parse(localStorage.websites);
 	printURLs(websites);
 }
 
@@ -85,4 +87,44 @@ function main(){
 document.addEventListener('DOMContentLoaded', function () {
 	main();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
