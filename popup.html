@@ -1,6 +1,13 @@
 <!doctype html>
 <html>
 	<head>
+		<!--<style type="text/css">
+			body {
+				width : 640px;
+				height : 480px;
+				overflow-y: scroll;				
+			}
+		</style>-->
 		<script src="trackedWebsite.js"></script>
 		<script src="retrieveFilesURLs.js"></script>
 		<script src="popup.js"></script>
@@ -8,10 +15,17 @@
 		<title>Automatic Downloader Main Popup</title>
 	</head>
 	<body>
-		<h5>AutomaticDownloader</h5>
-		<input type='button' id="dlAll" value="DL ALL"></input>
-		<ul id="websitesList">
-		</ul>
+		<h2 align="center">Automatic Downloader</h2>
+		<table>
+		<tr>
+		<th><input type='button' id="config" value="Configuration"></input></th>
+		<th><input type='button' id="inspect" value="Inspect Webs"></input></th>
+		<th><input type='button' id="dlAll" value="Download All"></input></th>
+		<th><input type='button' id='addWeb' value="Add Website"></input></th>
+		</tr>
+		</table>
+		<table id="websitesList">
+		</table>
 	</body>
 </html>
 		
