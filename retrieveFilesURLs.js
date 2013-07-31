@@ -12,7 +12,6 @@ function retrieveFilesURLs(url){
 	} else if(xhr.responseXML !== null){
 		doc = xhr.responseXML;
 	}
-	console.log(doc);
 	var links = doc.getElementsByTagName("a");
 	var files = new Array();
 	var j = 0;
