@@ -14,7 +14,16 @@ function closeAdd(){
 }
 
 function addURL(){
-
+	console.log(document.getElementById("newURL").value);
+	newWebsite = trackedWebsite(document.getElementById("newURL").value);
+	websites = getAllWebsites();
+	websites.push(newWebsite);
+	storeWebsites();
+	if(websites.length === 1){  // This way cleans the screen before printing the first URL
+		printURLs(websites);
+	} else {
+		PrintOneURL(newWebsite,websites.length-1);
+	}
 	closeAdd();
 }
 	

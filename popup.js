@@ -1,12 +1,16 @@
+var websites = new Array();
+
+
 
 //printURLs receives an array of TrackedWebsites and print the urls on the main popup
 //It prints also the button to download the files from that website
 function printURLs(websites){
-	if(websites !== undefined){
+	if(websites.length !== 0){
+		document.getElementById("websitesList").innerHTML = "";
 		websites.forEach(PrintOneURL);
 	} else {
 		var elem = document.getElementById("websitesList");
-		elem.appendChild(document.createTextNode("Add a website by clicking the 'Add website' button"));
+		elem.appendChild(document.createTextNode("Add a website by clicking the 'Add Website' button"));
 	}
 }
 	
@@ -54,16 +58,22 @@ function removeAndReloadWebsites(websites){
 	localStorage.websites=JSON.stringify(websites);
 }
 
+function storeWebsites(){
+	localStorage.websites=JSON.stringify(websites);
+}
+
+
 function getAllWebsites(){
 	if (localStorage.websites === undefined){
-		return undefined;
+		return new Array();
 	}
 	return JSON.parse(localStorage.websites);
 }
 	
 
 function main(){
-	var websites = new Array();
+//	removeAndReloadWebsites(websites);
+//	localStorage.removeItem('websites');
 	websites=getAllWebsites();
 	printURLs(websites);	
 }
