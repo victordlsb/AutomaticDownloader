@@ -1,10 +1,4 @@
 
-
-//To put in trackedWebsite.js {
-
-// }
-
-
 //printURLs receives an array of TrackedWebsites and print the urls on the main popup
 //It prints also the button to download the files from that website
 function printURLs(websites){
@@ -69,9 +63,7 @@ function getAllWebsites(){
 	
 
 function main(){
-	//localStorage.removeItem('websites');
 	var websites = new Array();
-	removeAndReloadWebsites(websites);
 	websites=getAllWebsites();
 	printURLs(websites);	
 }
@@ -84,17 +76,16 @@ function downloadAllFiles(){
 	}
 }
 
+function mainPopupListener(){
+	document.getElementById('dlAll').onclick = downloadAllFiles;
+	document.getElementById("addWeb").onclick = displayAddPopup;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	main();
-	document.getElementById('dlAll').onclick = downloadAllFiles;
-	
+	mainPopupListener();
+	addPopupListener();
 });
-
-
-
-
-
-
 
 
 

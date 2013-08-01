@@ -1,31 +1,45 @@
 <!doctype html>
 <html>
 	<head>
-		<!--<style type="text/css">
-			body {
-				width : 640px;
-				height : 480px;
-				overflow-y: scroll;				
-			}
-		</style>-->
+	<!-- Defined the script files that will be used and the main style of the popup -->
 		<script src="trackedWebsite.js"></script>
 		<script src="retrieveFilesURLs.js"></script>
 		<script src="popup.js"></script>
 		<script src="downloadFiles.js"></script>
+		<script src="addWebsite.js"></script>
 		<title>Automatic Downloader Main Popup</title>
+		<style type="text/css">
+			body {
+				width: 500px; 
+				height: 300px;
+				background-color: white;
+			}
+		</style>
 	</head>
 	<body>
-		<h2 align="center">Automatic Downloader</h2>
-		<table>
-		<tr>
-		<th><input type='button' id="config" value="Configuration"></input></th>
-		<th><input type='button' id="inspect" value="Inspect Webs"></input></th>
-		<th><input type='button' id="dlAll" value="Download All"></input></th>
-		<th><input type='button' id='addWeb' value="Add Website"></input></th>
-		</tr>
-		</table>
-		<table id="websitesList">
-		</table>
+	<!-- Main Popup -->
+		<div style="width: 500px; height: 300px; visibility:visible; background-color: white; position: absolute; top:0px; left:40px"  id="main"> 
+			<h2 align="left">Automatic Downloader</h2>
+			<table>
+			<tr>
+			<th><input type='button' id="config" value="Configuration"></input></th>
+			<th><input type='button' id="inspect" value="Inspect Webs"></input></th>
+			<th><input type='button' id='addWeb' value="Add Website"></input></th>
+			<th><input type='button' id="dlAll" value="Download All"></input></th>
+			</tr>
+			</table>
+			<table id="websitesList">
+			</table>
+			<br />	
+		</div>
+	<!-- Add website -->
+		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
+			<h2> Add a website </h2>					
+			<form>
+				URL to track: <input type="text" id="newURL" size=65>				
+				<input type="button"style="position: absolute; top: 200px; left: 300px;" id="addURL" value="Add Website">
+				<input type="button"style="position: absolute; top: -30px; left: 400px;" id="closeAdd" value="x">
+			</form>
+		</div>
 	</body>
 </html>
-		
