@@ -4,9 +4,15 @@ function addPopupListener(){
 	document.getElementById("closeAdd").onclick = closeAdd;
 }
 
-// Displays the add window
+// Displays the add window. It opens the form where the URL is with the URL of the tab that is currently active
 function displayAddPopup(){
-	document.getElementById("newURL").value = "";
+	
+	chrome.windows.getCurrent(
+		function (currentWindow){
+			chrome.tabs.query({active: true, windowId: currentWindow.id},
+			function(activeTabs) {	
+				document.getElementById("newURL").value = activeTabs[0].url })
+	});
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("addPopup").style.visibility = "visible";
 }

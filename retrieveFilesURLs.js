@@ -5,15 +5,15 @@ function retrieveFilesURLs(website){
 	//Get the HTML of the website
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET",website.get_URL, false);
+	xhr.responseType = "document";
 	xhr.send();
-	var xhr;
-	if(xhr.responseXML !== null){
-		doc = xhr.responseXML;
-	} else {
-		var parser = new DOMParser();
-		doc = parser.parseFromString(xhr.response, "text/xml");
-	};
-	console.log(doc);
+	// if(xhr.responseXML !== null){
+		// doc = xhr.responseXML;
+	// } else {
+		// var parser = new DOMParser();
+		// doc = parser.parseFromString(xhr.response, "text/xml");
+	// };
+	console.log(xhr);
 	// Get all the links in the website and put them in an array (from Download extension from Chrome Extensions Samples)
 	var links = [].slice.apply(doc.getElementsByTagName("a"));
 	console.log(links);

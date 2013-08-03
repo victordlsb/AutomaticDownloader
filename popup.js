@@ -79,7 +79,6 @@ function getAllWebsites(){
 function main(){
 //	removeAndReloadWebsites();
 //	localStorage.removeItem('websites');
-	console.log(localStorage.websites);
 	printURLs();	
 }
 

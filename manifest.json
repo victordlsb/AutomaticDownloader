@@ -8,7 +8,8 @@
 	
 	"permissions": [ 
 		"http://*/",
-		"downloads"
+		"downloads",
+		"tabs"
 	],
 	
 	"icons": {"128": "icon128.png"},
