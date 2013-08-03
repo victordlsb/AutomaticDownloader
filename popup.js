@@ -21,22 +21,29 @@ function PrintOneURL(website,index){
 	column1.setAttribute('align','left');
 	var column2 = document.createElement("th");
 	var column3 = document.createElement("th");
+	
+	//Defines the properties of the URL in the list
 	var url = document.createElement("input");
-	url.setAttribute("style","border: 0; background: transparent; width: 400px; cursor:pointer");
+	url.setAttribute("class","urlButton");
 	url.setAttribute("value",website.get_URL);
 	url.onclick = function() {webParamListener(website,index);};
+	
+	//defines the properties of the download button of each website
 	var downloadButton = document.createElement('input');
 	downloadButton.setAttribute('type','button');
 	downloadButton.setAttribute('name','down'+index);
 	downloadButton.setAttribute('value','Download');
 	downloadButton.setAttribute("class","button");
 	downloadButton.onclick = function() {clickDownloadFiles(website);};
+	
+	//defines the properties of the download button of each website
 	var listFilesButton = document.createElement('input');
 	listFilesButton.setAttribute('type','button');
 	listFilesButton.setAttribute('name','list'+index);
 	listFilesButton.setAttribute('value','List Files');
 	listFilesButton.setAttribute("class","button");
 	listFilesButton.onclick = function() {}; //TODO make the function to list the files to be downloaded
+	
 	column1.appendChild(url);
 	column2.appendChild(listFilesButton);
 	column3.appendChild(downloadButton);
@@ -47,9 +54,7 @@ function PrintOneURL(website,index){
 }
 
 function clickDownloadFiles(website){
-	var filesURLs = retrieveFilesURLs(website);
-	console.log(filesURLs);
-	downloadFiles(filesURLs);
+	retrieveFilesURLs(website,downloadFiles);
 }
 
 

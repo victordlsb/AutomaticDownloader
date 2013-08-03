@@ -30,3 +30,27 @@
    border-top-color: #1b435e;
    background: #1b435e;
    }
+ 
+ 
+.urlButton {
+   cursor: default;
+   background: #ffffff;
+   padding: 2.5px 6px;
+   border-radius: 0px;
+   color: #000000;
+   font-size: 11px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   width: 400px;
+   border: 1;
+   }
+.urlButton:hover {
+   border: 1;
+   border-color: transparent;
+   background: #28597a;
+   color: #ccc;
+   }
+.urlButton:active {
+   background: #1b435e;
+   }
