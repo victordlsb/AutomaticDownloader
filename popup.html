@@ -7,6 +7,8 @@
 		<script src="popup.js"></script>
 		<script src="downloadFiles.js"></script>
 		<script src="addWebsite.js"></script>
+		<script src="webParam.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<title>Automatic Downloader Main Popup</title>
 		<style type="text/css">
 			body {
@@ -23,10 +25,10 @@
 			<h2 align="left">Automatic Downloader</h2>
 			<table>
 			<tr>
-			<th><input type='button' id="config" value="Configuration"></input></th>
-			<th><input type='button' id="inspect" value="Inspect Webs"></input></th>
-			<th><input type='button' id='addWeb' value="Add Website"></input></th>
-			<th><input type='button' id="dlAll" value="Download All"></input></th>
+			<th><input class="button" type='button' id="config" value="Configuration" ></input></th>
+			<th><input class="button" type='button' id="inspect" value="Inspect Webs" ></input></th>
+			<th><input class="button" type='button' id='addWeb' value="Add Website"  ></input></th>
+			<th><input class="button" type='button' id="dlAll" value="Download All" ></input></th>
 			</tr>
 			</table>
 			<table id="websitesList">
@@ -38,9 +40,16 @@
 			<h2> Add a website </h2>					
 			<form>
 				URL to track:<input type="text" id="newURL" size=115>		
-				<input type="button"style="position: absolute; top: 200px; left: 600px;" id="addURL" value="Add Website">
-				<input type="button"style="position: absolute; top: -30px; left: 700px;" id="closeAdd" value="x">
+				<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="addURL" value="Add Website">
+				<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeAdd" value="X">
 			</form>
+		</div>
+	<!-- Single website configuration -->
+		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
+			<h2> Website parameters </h2>
+			<div id="paramURL"></div>
+			<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeWebParam" value="X">
+			<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="deleteWeb" value="Delete Website">
 		</div>
 	</body>
 </html>

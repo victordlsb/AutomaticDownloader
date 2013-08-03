@@ -6,5 +6,7 @@ var trackedWebsite = function(url){
 		get get_URL() {
 			return url;
 		}
+		//TODO get get_Extensions (array with the extensions for this) and set_Extensions
 	}
+	
 }
