@@ -13,18 +13,19 @@ function webParamListener(website,index){
 
 // Display the websites parameters. Receives the parameters to check for them
 function displayWebParameters(website){
-	document.getElementById("paramURL").innerHTML = "";
-	document.getElementById("paramURL").appendChild(document.createTextNode(website.get_URL));
+	paramURL = document.getElementById("paramURL");
+	paramURL.innerHTML = "";
+	paramURL.href = website.url;
+	//Open the website when clicked on it
+	paramURL.onclick = function () {window.open(website.url)};
+	paramURL.appendChild(document.createTextNode(website.url));
 	//Checks the extensions of this file and put the correspondent check if included
 	checkboxes = document.getElementsByClassName ("paramCheck");
 	for(var i=0;i<checkboxes.length;i++){
-		checkboxes[i].checked = (website.get_Extensions.indexOf(checkboxes[i].id) === -1) ? false : true;
+		checkboxes[i].checked = (website.extensions.indexOf(checkboxes[i].id) === -1) ? false : true;
 	}
-	console.log(1);
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("webParam").style.visibility = "visible";
-	console.log(document.getElementById("main").style.visibility);
-	console.log(document.getElementById("webParam").style.visibility);
 }
 
 
@@ -53,13 +54,12 @@ function closeWebParam(index){
 			if(document.getElementById(".txt").checked) extensions.push(".txt") ;
 			
 			websites = getAllWebsites();
-			console.log(websites[index]);
-			websites[index].set_Extensions(extensions);
+			websites[index].extensions = extensions;
 			storeWebsites();
+			printURLs();
 		}
 	}
-	document.getElementById("main").style.visibility = "visible";
-	document.getElementById("webParam").style.visibility = "hidden";	
+	returnToMain();
 	paramModified = false;
 }
 
@@ -71,6 +71,6 @@ function deleteWebsite(index){
 		localStorage.removeItem('websites');
 		storeWebsites();
 		printURLs();
-		closeWebParam();
+		returnToMain();
 	}	
 }

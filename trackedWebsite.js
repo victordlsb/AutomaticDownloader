@@ -1,23 +1,11 @@
-// trackedWebsite: does not use the new to create the object trackedWebsite. 
-//Creates an object with private parameters only accessible by the getter 
+//Creates a TrackedWebsite object
 
-var trackedWebsite = function(url,extensions){
-	return {
-		//This returns the URL of the website
-		get get_URL() {
-			return url;
-		},
+var TrackedWebsite = function(url,extensions){
 
-		get get_Extensions(){
-			return extensions;
-		},
-		
-		set set_Extensions(ext){
-			this.extensions = ext;
-		}
-		
-		//TODO get_Name (name of the website and the one that will appear in the list
-		//TODO path to be downloaded 
-	}
+	this.extensions = extensions;
+	this.url = url;
 	
+		//TODO name (name of the website and the one that will appear in the list)
+		//TODO path to be downloaded 
+
 }

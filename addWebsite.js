@@ -1,7 +1,7 @@
 // Listener to all the buttons in the add window
 function addPopupListener(){
 	document.getElementById("addURL").onclick =  addURL;
-	document.getElementById("closeAdd").onclick = closeAdd;
+	document.getElementById("closeAdd").onclick = returnToMain;
 }
 
 // Displays the add window. It opens the form where the URL is with the URL of the tab that is currently active
@@ -17,11 +17,7 @@ function displayAddPopup(){
 	document.getElementById("addPopup").style.visibility = "visible";
 }
 
-// Closes the add website window
-function closeAdd(){
-	document.getElementById("main").style.visibility = "visible";
-	document.getElementById("addPopup").style.visibility = "hidden";
-}
+
 
 //adds a website to the system. 
 function addURL(){
@@ -41,18 +37,16 @@ function addURL(){
 	if(document.getElementById("txt").checked) extensions.push(".txt") ;
 	
 	//Stores the website
-	newWebsite = trackedWebsite(document.getElementById("newURL").value,extensions);
-	console.log(newWebsite);
+	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();
-	console.log(getAllWebsites());
 	
 	if(websites.length === 1){  // This way cleans the screen before printing the first URL
 		printURLs();
 	} else {
 		PrintOneURL(newWebsite,websites.length-1);
 	}
-	closeAdd();
+	returnToMain();
 }
 

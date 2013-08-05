@@ -1,19 +1,16 @@
 //This function reads the links from a given TrackedWebsite
 function retrieveFilesURLs(website, callback){
-	
 	//Get the HTML of the website
 	var doc;
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET",website.get_URL);
+	xhr.open("GET",website.url);
 	xhr.responseType = "document";
 	xhr.onload = function (e) {
 		if (xhr.readyState === 4){
 			if(xhr.status === 200){
 				doc = xhr.responseXML;
-				
 				// Get all the links in the website and put them in an array (from Download extension from Chrome Extensions Samples)
 				var links = [].slice.apply(doc.getElementsByTagName("a"));
-				console.log(links);
 				links = links.map(function(element){
 					var href = element.href;
 					var hashIndex = href.indexOf('#');
@@ -26,12 +23,12 @@ function retrieveFilesURLs(website, callback){
 				//Look for the extensions desired 
 				var files = new Array();
 				var k;
-				for (k = 0; k<website.get_Extensions.length;k++){
+				for (k = 0; k<website.extensions.length;k++){
 					var j = 0;
 					for(var i=0;i<links.length;i++){
 						//Bit of geniality here. Looks in the link being checked if the last characters are 
 						//the extension looked for by substracting the length of the extension to the length of the link
-						if(links[i].search(website.get_Extensions[k])===links[i].length-website.get_Extensions[k].length){
+						if(links[i].search(website.extensions[k])===links[i].length-website.extensions[k].length){
 							files[j]=links[i];
 							j++;
 						}

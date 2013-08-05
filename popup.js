@@ -1,4 +1,3 @@
-var websites = new Array();
 
 //printURLs receives an array of TrackedWebsites and print the urls on the main popup
 //It prints also the button to download the files from that website
@@ -25,7 +24,7 @@ function PrintOneURL(website,index){
 	//Defines the properties of the URL in the list
 	var url = document.createElement("input");
 	url.setAttribute("class","urlButton");
-	url.setAttribute("value",website.get_URL);
+	url.setAttribute("value",website.url);
 	url.onclick = function() {webParamListener(website,index);};
 	
 	//defines the properties of the download button of each website
@@ -57,34 +56,10 @@ function clickDownloadFiles(website){
 	retrieveFilesURLs(website,downloadFiles);
 }
 
-
-
-//For test purposes
-function removeAndReloadWebsites(){
-	localStorage.removeItem('websites');
-	websites.push(TrackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
-	websites.push(TrackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
-	websites.push(TrackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
-	localStorage.websites=JSON.stringify(websites);
-}
-
-function storeWebsites(){
-	localStorage.websites=JSON.stringify(websites);
-}
-
-
-function getAllWebsites(){
-	if (localStorage.websites === undefined){
-		return new Array();
-	}
-	return JSON.parse(localStorage.websites);
-}
-	
-
 function main(){
-//	removeAndReloadWebsites();
-//	localStorage.removeItem('websites');
-	printURLs();	
+//	removeAndReloadWebsites(); //For Test Purposes
+//	localStorage.removeItem('websites'); //For Test Purposes
+	printURLs();
 }
 
 //This function download all the files from all the websites being tracked

@@ -2,12 +2,13 @@
 <html>
 	<head>
 	<!-- Defined the script files that will be used and the main style of the popup -->
-		<script src="trackedWebsite.js"></script>
+		<script src="TrackedWebsite.js"></script>
 		<script src="retrieveFilesURLs.js"></script>
 		<script src="popup.js"></script>
 		<script src="downloadFiles.js"></script>
 		<script src="addWebsite.js"></script>
 		<script src="webParam.js"></script>
+		<script src="extensionFunctions.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<title>Automatic Downloader Main Popup</title>
 	</head>
@@ -45,7 +46,7 @@
 	<!-- Single website configuration -->
 		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
 			<h2 class="h2"> Website parameters </h2>
-			<div id="paramURL"></div>
+			<a id="paramURL"></a>
 			<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeWebParam" value="X">
 			<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="deleteWeb" value="Delete Website">
 			<input type="checkbox" style="position: absolute; top: 40px; left: 300px" id=".pdf" class="paramCheck"><div style="position:absolute; top:40px; left: 320px">.pdf</div>
