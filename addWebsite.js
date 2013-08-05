@@ -25,6 +25,7 @@ function closeAdd(){
 
 //adds a website to the system. 
 function addURL(){
+	//Check for the extensions the website will download
 	var extensions = [];
 	if(document.getElementById("pdf").checked) extensions.push(".pdf") ;
 	if(document.getElementById("doc").checked) {
@@ -38,13 +39,13 @@ function addURL(){
 	if(document.getElementById("zip").checked) extensions.push(".zip") ;
 	if(document.getElementById("rar").checked) extensions.push(".rar") ;
 	if(document.getElementById("txt").checked) extensions.push(".txt") ;
-
+	
+	//Stores the website
 	newWebsite = trackedWebsite(document.getElementById("newURL").value,extensions);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();
-	console.log(getAllWebsites());
-
+	
 	if(websites.length === 1){  // This way cleans the screen before printing the first URL
 		printURLs();
 	} else {

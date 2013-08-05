@@ -29,8 +29,9 @@ function retrieveFilesURLs(website, callback){
 				for (k = 0; k<website.get_Extensions.length;k++){
 					var j = 0;
 					for(var i=0;i<links.length;i++){
-					//Implement the .pdf as an array of the file extension that can be read.
-						if(links[i].search(website.get_Extensions[k])===links[i].length-4){
+						//Bit of geniality here. Looks in the link being checked if the last characters are 
+						//the extension looked for by substracting the length of the extension to the length of the link
+						if(links[i].search(website.get_Extensions[k])===links[i].length-website.get_Extensions[k].length){
 							files[j]=links[i];
 							j++;
 						}
