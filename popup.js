@@ -62,9 +62,9 @@ function clickDownloadFiles(website){
 //For test purposes
 function removeAndReloadWebsites(){
 	localStorage.removeItem('websites');
-	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
-	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
-	websites.push(trackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
+	websites.push(TrackedWebsite('http://www.dcs.bbk.ac.uk/courses/'));
+	websites.push(TrackedWebsite('http://www.dcs.bbk.ac.uk/courses/msccs/'));
+	websites.push(TrackedWebsite('http://www.dcs.bbk.ac.uk/courses/mscinfo/'));
 	localStorage.websites=JSON.stringify(websites);
 }
 

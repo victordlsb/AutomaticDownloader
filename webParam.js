@@ -9,6 +9,13 @@ function webParamListener(website,index){
 function displayWebParameters(website){
 	document.getElementById("paramURL").innerHTML = "";
 	document.getElementById("paramURL").appendChild(document.createTextNode(website.get_URL));
+	//Checks the extensions of this file and put the correspondent check if included
+	document.getElementById(".pdf").checked = (website.get_Extensions.indexOf(".pdf") === -1) ? false : true;
+	document.getElementById(".doc").checked = (website.get_Extensions.indexOf(".doc") === -1) ? false : true;
+	document.getElementById(".ppt").checked = (website.get_Extensions.indexOf(".ppt") === -1) ? false : true;
+	document.getElementById(".zip").checked = (website.get_Extensions.indexOf(".zip") === -1) ? false : true;
+	document.getElementById(".rar").checked = (website.get_Extensions.indexOf(".rar") === -1) ? false : true;
+	document.getElementById(".txt").checked = (website.get_Extensions.indexOf(".txt") === -1) ? false : true;
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("webParam").style.visibility = "visible";
 }

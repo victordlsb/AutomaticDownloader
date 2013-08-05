@@ -25,10 +25,26 @@ function closeAdd(){
 
 //adds a website to the system. 
 function addURL(){
-	newWebsite = trackedWebsite(document.getElementById("newURL").value);
+	var extensions = [];
+	if(document.getElementById("pdf").checked) extensions.push(".pdf") ;
+	if(document.getElementById("doc").checked) {
+		extensions.push(".doc");
+		extensions.push(".docx");
+	}
+	if(document.getElementById("ppt").checked){
+		extensions.push(".ppt") ;
+		extensions.push(".pptx");
+	}
+	if(document.getElementById("zip").checked) extensions.push(".zip") ;
+	if(document.getElementById("rar").checked) extensions.push(".rar") ;
+	if(document.getElementById("txt").checked) extensions.push(".txt") ;
+
+	newWebsite = trackedWebsite(document.getElementById("newURL").value,extensions);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();
+	console.log(getAllWebsites());
+
 	if(websites.length === 1){  // This way cleans the screen before printing the first URL
 		printURLs();
 	} else {

@@ -10,16 +10,8 @@
 		<script src="webParam.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<title>Automatic Downloader Main Popup</title>
-		<style type="text/css">
-			body {
-				width: 800px; 
-				height: 300px;
-				background-color: white;
-				overflow-y: scroll;
-			}
-		</style>
 	</head>
-	<body>
+	<body class="body">
 	<!-- Main Popup -->
 		<div style="width: 500px; height: 300px; visibility:visible; background-color: white; position: absolute; top:0px; left:40px"  id="main"> 
 			<h2 class="h2" align="left">Automatic Downloader</h2>
@@ -37,11 +29,17 @@
 		</div>
 	<!-- Add website -->
 		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
-			<h2 class="h2"> Add a website </h2>					
+			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Add a website </h2>					
 			<form>
 				URL to track:<input type="text" id="newURL" size=115>		
 				<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="addURL" value="Add Website">
 				<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeAdd" value="X">
+				<input type="checkbox" style="position: absolute; top: 40px; left: 300px" id="pdf" checked=true><div style="position:absolute; top:40px; left: 320px">.pdf</div>
+				<input type="checkbox" style="position: absolute; top: 55px; left: 300px" id="doc" checked=true><div style="position:absolute; top:55px; left: 320px">.doc/.docx</div>
+				<input type="checkbox" style="position: absolute; top: 70px; left: 300px" id="ppt" checked=true><div style="position:absolute; top:70px; left: 320px">.ppt/.pptx</div>
+				<input type="checkbox" style="position: absolute; top: 40px; left: 400px" id="zip" checked=true><div style="position:absolute; top:40px; left: 420px">.zip</div>
+				<input type="checkbox" style="position: absolute; top: 55px; left: 400px" id="rar" checked=true><div style="position:absolute; top:55px; left: 420px">.rar</div>
+				<input type="checkbox" style="position: absolute; top: 70px; left: 400px" id="txt" checked=true><div style="position:absolute; top:70px; left: 420px">.txt</div>
 			</form>
 		</div>
 	<!-- Single website configuration -->
@@ -50,6 +48,12 @@
 			<div id="paramURL"></div>
 			<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeWebParam" value="X">
 			<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="deleteWeb" value="Delete Website">
+			<input type="checkbox" style="position: absolute; top: 40px; left: 300px" id=".pdf"><div style="position:absolute; top:40px; left: 320px">.pdf</div>
+			<input type="checkbox" style="position: absolute; top: 55px; left: 300px" id=".doc"><div style="position:absolute; top:55px; left: 320px">.doc/.docx</div>
+			<input type="checkbox" style="position: absolute; top: 70px; left: 300px" id=".ppt"><div style="position:absolute; top:70px; left: 320px">.ppt/.pptx</div>
+			<input type="checkbox" style="position: absolute; top: 40px; left: 400px" id=".zip"><div style="position:absolute; top:40px; left: 420px">.zip</div>
+			<input type="checkbox" style="position: absolute; top: 55px; left: 400px" id=".rar"><div style="position:absolute; top:55px; left: 420px">.rar</div>
+			<input type="checkbox" style="position: absolute; top: 70px; left: 400px" id=".txt"><div style="position:absolute; top:70px; left: 420px">.txt</div>
 		</div>
 	</body>
 </html>

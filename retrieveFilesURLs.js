@@ -24,8 +24,6 @@ function retrieveFilesURLs(website, callback){
 				});	
 				
 				//Look for the extensions desired 
-				// TODO in the final version this line won't be needed. 
-				website.get_Extensions = [".pdf"];
 				var files = new Array();
 				var k;
 				for (k = 0; k<website.get_Extensions.length;k++){
