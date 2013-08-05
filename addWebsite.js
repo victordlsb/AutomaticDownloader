@@ -42,9 +42,11 @@ function addURL(){
 	
 	//Stores the website
 	newWebsite = trackedWebsite(document.getElementById("newURL").value,extensions);
+	console.log(newWebsite);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();
+	console.log(getAllWebsites());
 	
 	if(websites.length === 1){  // This way cleans the screen before printing the first URL
 		printURLs();
@@ -53,4 +55,4 @@ function addURL(){
 	}
 	closeAdd();
 }
-	
+
