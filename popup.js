@@ -16,10 +16,17 @@ function printURLs(){
 function PrintOneURL(website,index){
 	var elem = document.getElementById("websitesList");
 	var row = document.createElement("tr");
+	
+	var column0 = document.createElement("th");
 	var column1 = document.createElement("th");
 	column1.setAttribute('align','left');
 	var column2 = document.createElement("th");
 	var column3 = document.createElement("th");
+	
+	var hyperlink = document.createElement("input");
+	hyperlink.setAttribute("class","hyperlink");
+	hyperlink.setAttribute("value","\u2196");
+	hyperlink.onclick = function() {window.open(website.url)};
 	
 	//Defines the properties of the URL in the list
 	var url = document.createElement("input");
@@ -43,9 +50,11 @@ function PrintOneURL(website,index){
 	listFilesButton.setAttribute("class","button");
 	listFilesButton.onclick = function() {}; //TODO make the function to list the files to be downloaded
 	
+	column0.appendChild(hyperlink);
 	column1.appendChild(url);
 	column2.appendChild(listFilesButton);
 	column3.appendChild(downloadButton);
+	row.appendChild(column0);
 	row.appendChild(column1);
 	row.appendChild(column2);
 	row.appendChild(column3);

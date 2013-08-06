@@ -49,7 +49,14 @@
    border: 1;
  }
  
- 
+.hyperlink {
+	cursor: pointer;
+	border: 0;
+	font-size: 20px;
+	height: 20px;
+	width: 20px
+}
+
 .urlButton {
    cursor: default;
    background: #ffffff;
