@@ -40,6 +40,15 @@
    background: #1b435e;
    }
  
+.textBox{
+   font-size: 11px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   padding: 2.5px 6px;
+   border: 1;
+ }
+ 
  
 .urlButton {
    cursor: default;

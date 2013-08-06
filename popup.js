@@ -24,7 +24,7 @@ function PrintOneURL(website,index){
 	//Defines the properties of the URL in the list
 	var url = document.createElement("input");
 	url.setAttribute("class","urlButton");
-	url.setAttribute("value",website.url);
+	url.setAttribute("value",website.name);
 	url.onclick = function() {webParamListener(website,index);};
 	
 	//defines the properties of the download button of each website

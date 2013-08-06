@@ -31,30 +31,40 @@
 	<!-- Add website -->
 		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
 			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Add a website </h2>					
-			<form>
-				URL to track:<input type="text" id="newURL" size=115>		
+			<form style='position: relative; top:-50px; left:0px'>
+				Name to display on list (leave blank to use the URL): <input type="text" id="newName" class="textBox" size=115>		
+				URL to track:
+				<input type="text" id="newURL" class="textBox" size=115>		
 				<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="addURL" value="Add Website">
-				<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeAdd" value="X">
-				<input type="checkbox" style="position: absolute; top: 40px; left: 300px" id="pdf" checked=true><div style="position:absolute; top:40px; left: 320px">.pdf</div>
-				<input type="checkbox" style="position: absolute; top: 55px; left: 300px" id="doc" checked=true><div style="position:absolute; top:55px; left: 320px">.doc/.docx</div>
-				<input type="checkbox" style="position: absolute; top: 70px; left: 300px" id="ppt" checked=true><div style="position:absolute; top:70px; left: 320px">.ppt/.pptx</div>
-				<input type="checkbox" style="position: absolute; top: 40px; left: 400px" id="zip" checked=true><div style="position:absolute; top:40px; left: 420px">.zip</div>
-				<input type="checkbox" style="position: absolute; top: 55px; left: 400px" id="rar" checked=true><div style="position:absolute; top:55px; left: 420px">.rar</div>
-				<input type="checkbox" style="position: absolute; top: 70px; left: 400px" id="txt" checked=true><div style="position:absolute; top:70px; left: 420px">.txt</div>
+				<input class="button" type="button"style="position: absolute; top: -50px; left: 700px; " id="closeAdd" value="X">
+				<input type="checkbox" style="position: absolute; top: 100px; left: 300px" id="pdf" checked=true><div style="position:absolute; top:100px; left: 320px">.pdf</div>
+				<input type="checkbox" style="position: absolute; top: 115px; left: 300px" id="doc" checked=true><div style="position:absolute; top:115px; left: 320px">.doc/.docx</div>
+				<input type="checkbox" style="position: absolute; top: 130px; left: 300px" id="ppt" checked=true><div style="position:absolute; top:130px; left: 320px">.ppt/.pptx</div>
+				<input type="checkbox" style="position: absolute; top: 100px; left: 400px" id="zip" checked=true><div style="position:absolute; top:100px; left: 420px">.zip</div>
+				<input type="checkbox" style="position: absolute; top: 115px; left: 400px" id="rar" checked=true><div style="position:absolute; top:115px; left: 420px">.rar</div>
+				<input type="checkbox" style="position: absolute; top: 130px; left: 400px" id="txt" checked=true><div style="position:absolute; top:130px; left: 420px">.txt</div>
+				<div style="position: absolute; top: 150px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
+				<input type="text" id="addMoreExt" style="position: absolute; top: 180px; left: 300px">
 			</form>
 		</div>
 	<!-- Single website configuration -->
 		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
-			<h2 class="h2"> Website parameters </h2>
-			<a id="paramURL"></a>
-			<input class="button" type="button"style="position: absolute; top: -30px; left: 700px; " id="closeWebParam" value="X">
+			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Website parameters </h2>
+			<form style='position: relative; top:-50px; left:0px'>
+			Name to display: <input type="text" id="paramName" class="textBox" size=115>	
+			URL to track:
+			<input type="text" id="paramURL" class="textBox" size=115>
+			<input class="button" type="button"style="position: absolute; top: -50px; left: 700px; " id="closeWebParam" value="X">
 			<input class="button" type="button"style="position: absolute; top: 200px; left: 600px;" id="deleteWeb" value="Delete Website">
-			<input type="checkbox" style="position: absolute; top: 40px; left: 300px" id=".pdf" class="paramCheck"><div style="position:absolute; top:40px; left: 320px">.pdf</div>
-			<input type="checkbox" style="position: absolute; top: 55px; left: 300px" id=".doc" class="paramCheck"><div style="position:absolute; top:55px; left: 320px">.doc/.docx</div>
-			<input type="checkbox" style="position: absolute; top: 70px; left: 300px" id=".ppt" class="paramCheck"><div style="position:absolute; top:70px; left: 320px">.ppt/.pptx</div>
-			<input type="checkbox" style="position: absolute; top: 40px; left: 400px" id=".zip" class="paramCheck"><div style="position:absolute; top:40px; left: 420px">.zip</div>
-			<input type="checkbox" style="position: absolute; top: 55px; left: 400px" id=".rar" class="paramCheck"><div style="position:absolute; top:55px; left: 420px">.rar</div>
-			<input type="checkbox" style="position: absolute; top: 70px; left: 400px" id=".txt" class="paramCheck"><div style="position:absolute; top:70px; left: 420px">.txt</div>
+			<input type="checkbox" style="position: absolute; top: 100px; left: 300px" id=".pdf" class="paramCheck"><div style="position:absolute; top:100px; left: 320px">.pdf</div>
+			<input type="checkbox" style="position: absolute; top: 115px; left: 300px" id=".doc" class="paramCheck"><div style="position:absolute; top:115px; left: 320px">.doc/.docx</div>
+			<input type="checkbox" style="position: absolute; top: 130px; left: 300px" id=".ppt" class="paramCheck"><div style="position:absolute; top:130px; left: 320px">.ppt/.pptx</div>
+			<input type="checkbox" style="position: absolute; top: 100px; left: 400px" id=".zip" class="paramCheck"><div style="position:absolute; top:100px; left: 420px">.zip</div>
+			<input type="checkbox" style="position: absolute; top: 115px; left: 400px" id=".rar" class="paramCheck"><div style="position:absolute; top:115px; left: 420px">.rar</div>
+			<input type="checkbox" style="position: absolute; top: 130px; left: 400px" id=".txt" class="paramCheck"><div style="position:absolute; top:130px; left: 420px">.txt</div>
+			<div style="position: absolute; top: 150px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
+			<input type="text" id="paramMoreExt" style="position: absolute; top: 180px; left: 300px">
+			</form>
 		</div>
 	</body>
 </html>

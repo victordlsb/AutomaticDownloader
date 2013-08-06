@@ -1,5 +1,6 @@
 // listens to all the buttons in the Website parameters windows. Receives the website and the index of the website on the array to distribute it through the convenient section
 var paramModified = false; 
+var extensionsModified = false;
 
 function webParamListener(website,index){
 	displayWebParameters(website);
@@ -7,18 +8,22 @@ function webParamListener(website,index){
 	document.getElementById("closeWebParam").onclick = function (){ closeWebParam(index)};
 	checkboxes = document.getElementsByClassName("paramCheck");
 	for(var i=0;i<checkboxes.length;i++){
-		checkboxes[i].onclick = function () { paramModified = true; };
+		checkboxes[i].onclick = function () { paramModified = true; extensionsModified = true; };
 	}
 }
 
 // Display the websites parameters. Receives the parameters to check for them
 function displayWebParameters(website){
+
+	paramName = document.getElementById("paramName");
+	paramName.value = website.name;
+	paramName.onclick = function() {paramModified = true;};
+	
 	paramURL = document.getElementById("paramURL");
-	paramURL.innerHTML = "";
-	paramURL.href = website.url;
-	//Open the website when clicked on it
-	paramURL.onclick = function () {window.open(website.url)};
+	paramURL.value = website.url;
+	paramURL.onclick = function(){ paramModified = true;};
 	paramURL.appendChild(document.createTextNode(website.url));
+	
 	//Checks the extensions of this file and put the correspondent check if included
 	checkboxes = document.getElementsByClassName ("paramCheck");
 	for(var i=0;i<checkboxes.length;i++){
@@ -31,33 +36,40 @@ function displayWebParameters(website){
 
 // Closes the website parameters windows. 
 
-// Option 1: Any change made will be saved when closing it
-// Option 2: A confirm window will ask if we want to save the changes
+
+//A confirm window will ask if we want to save the changes
 function closeWebParam(index){
 	if(paramModified){	
+		websites = getAllWebsites();
 		var r = confirm("Do you want to save the changes made?");
 		if(r){
-			//This is not the same code as the one in addWebsite, as every checkbox has a unique ID
-			//Save the extensions
-			var extensions = [];
-			if(document.getElementById(".pdf").checked) extensions.push(".pdf") ;
-			if(document.getElementById(".doc").checked) {
-				extensions.push(".doc");
-				extensions.push(".docx");
+			if(extensionsModified){
+				//This is not the same code as the one in addWebsite, as every checkbox has a unique ID
+				//Save the extensions
+				var extensions = [];
+				if(document.getElementById(".pdf").checked) extensions.push(".pdf") ;
+				if(document.getElementById(".doc").checked) {
+					extensions.push(".doc");
+					extensions.push(".docx");
+				}
+				if(document.getElementById(".ppt").checked){
+					extensions.push(".ppt") ;
+					extensions.push(".pptx");
+				}
+				if(document.getElementById(".zip").checked) extensions.push(".zip") ;
+				if(document.getElementById(".rar").checked) extensions.push(".rar") ;
+				if(document.getElementById(".txt").checked) extensions.push(".txt") ;
+				websites[index].extensions = extensions;
 			}
-			if(document.getElementById(".ppt").checked){
-				extensions.push(".ppt") ;
-				extensions.push(".pptx");
+			if(websites[index].url !== document.getElementById("paramURL").value){
+				websites[index].url = document.getElementById("paramURL").value;
 			}
-			if(document.getElementById(".zip").checked) extensions.push(".zip") ;
-			if(document.getElementById(".rar").checked) extensions.push(".rar") ;
-			if(document.getElementById(".txt").checked) extensions.push(".txt") ;
-			
-			websites = getAllWebsites();
-			websites[index].extensions = extensions;
-			storeWebsites();
-			printURLs();
+			if(websites[index].name = document.getElementById("paramName").value){
+				websites[index].name = document.getElementById("paramName").value;
+			}
 		}
+		storeWebsites();
+		printURLs();
 	}
 	returnToMain();
 	paramModified = false;

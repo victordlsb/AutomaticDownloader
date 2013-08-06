@@ -6,7 +6,7 @@ function addPopupListener(){
 
 // Displays the add window. It opens the form where the URL is with the URL of the tab that is currently active
 function displayAddPopup(){
-	
+	document.getElementById("newName").value = "";
 	chrome.windows.getCurrent(
 		function (currentWindow){
 			chrome.tabs.query({active: true, windowId: currentWindow.id},
@@ -36,8 +36,13 @@ function addURL(){
 	if(document.getElementById("rar").checked) extensions.push(".rar") ;
 	if(document.getElementById("txt").checked) extensions.push(".txt") ;
 	
+	if(document.getElementById("newName").value !== ""){
+		var name = document.getElementById("newName").value;
+	} else {
+		var name = document.getElementById("newURL").value;
+	}
 	//Stores the website
-	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions);
+	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();

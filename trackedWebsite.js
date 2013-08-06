@@ -1,11 +1,10 @@
 //Creates a TrackedWebsite object
 
-var TrackedWebsite = function(url,extensions){
+var TrackedWebsite = function(url,extensions,name){
 
 	this.extensions = extensions;
 	this.url = url;
-	
-		//TODO name (name of the website and the one that will appear in the list)
+	this.name = name;
 		//TODO path to be downloaded 
 
 }
