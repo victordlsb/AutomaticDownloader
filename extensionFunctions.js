@@ -37,3 +37,24 @@ function downloadFiles(files){
 		chrome.downloads.download({url: files[i], saveAs: false});
 	}
 }
+
+
+//TODO add a format checking
+//Transforms an string of extensions separated by commas (",") for an array 
+//and adds them to the array provided if it does not contain it
+function extToArray(extensions,otherExtensions){
+	if(otherExtensions !== ""){
+		otherExtensions = otherExtensions.split(",");
+		otherExtensions.forEach(function (ext){
+			// Check if the first character is a dot ("."). If not, adds it.
+			if(ext.substring(0,1) !== "."){
+				ext = "." + ext;
+			};
+			//Checks if in the extensions array. If not, adds it
+			if (extensions.indexOf(ext) === -1){
+				extensions.push(ext);
+			}
+		});
+	}
+	return extensions;
+}

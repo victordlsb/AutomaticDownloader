@@ -13,6 +13,19 @@ function webParamListener(website,index){
 	}
 }
 
+//This functions gets the extensions and conver to String only those which are not from the default program;
+function extToString(ext){
+	var extString = "";
+	var defaultExt = [".pdf",".txt",".docx",".pptx",".zip",".rar"];
+	for (var i=0;i<ext.length;i++){
+		if(defaultExt.indexOf(ext[i]) === -1){
+			extString = extString + ext[i] + ",";
+		}	
+	}
+	extString = extString.slice(0,extString.length-1);
+	return extString;
+}
+
 function setSaveChangesButton(index){
 	var saveChangesButton = document.getElementById("saveChanges");
 	saveChangesButton.onclick = function (){ 
@@ -61,6 +74,7 @@ function displayWebParameters(website){
 	paramURL.onclick = function(){ paramModified = true;};
 	paramURL.appendChild(document.createTextNode(website.url));
 	
+	
 	//Checks the extensions of this file and put the correspondent check if included
 	checkboxes = document.getElementsByClassName ("paramCheck");
 	for(var i=0;i<checkboxes.length;i++){
@@ -68,6 +82,12 @@ function displayWebParameters(website){
 	}
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("webParam").style.visibility = "visible";
+	
+	document.getElementById("paramMoreExt").value = extToString(website.extensions);
+	document.getElementById("paramMoreExt").onclick = function () { 
+		paramModified = true; 
+		extensionsModified = true;
+	};
 }
 
 
@@ -95,17 +115,12 @@ function saveChanges(index){
 		//Save the extensions
 		var extensions = [];
 		if(document.getElementById(".pdf").checked) extensions.push(".pdf") ;
-		if(document.getElementById(".doc").checked) {
-			extensions.push(".doc");
-			extensions.push(".docx");
-		}
-		if(document.getElementById(".ppt").checked){
-			extensions.push(".ppt") ;
-			extensions.push(".pptx");
-		}
+		if(document.getElementById(".docx").checked) extensions.push(".docx");
+		if(document.getElementById(".pptx").checked) extensions.push(".pptx");
 		if(document.getElementById(".zip").checked) extensions.push(".zip") ;
 		if(document.getElementById(".rar").checked) extensions.push(".rar") ;
 		if(document.getElementById(".txt").checked) extensions.push(".txt") ;
+		extensions = extToArray(extensions,document.getElementById("paramMoreExt").value);
 		websites[index].extensions = extensions;
 		changesMade= true;
 	}

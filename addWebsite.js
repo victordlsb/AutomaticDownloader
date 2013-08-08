@@ -27,6 +27,7 @@ function displayAddPopup(){
 			function(activeTabs) {	
 				document.getElementById("newURL").value = activeTabs[0].url })
 	});
+	document.getElementById("addMoreExt").value = "";
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("addPopup").style.visibility = "visible";
 }
@@ -38,14 +39,8 @@ function addURL(){
 	//Check for the extensions the website will download
 	var extensions = [];
 	if(document.getElementById("pdf").checked) extensions.push(".pdf") ;
-	if(document.getElementById("doc").checked) {
-		extensions.push(".doc");
-		extensions.push(".docx");
-	}
-	if(document.getElementById("ppt").checked){
-		extensions.push(".ppt") ;
-		extensions.push(".pptx");
-	}
+	if(document.getElementById("docx").checked) extensions.push(".docx");
+	if(document.getElementById("pptx").checked) extensions.push(".pptx");
 	if(document.getElementById("zip").checked) extensions.push(".zip") ;
 	if(document.getElementById("rar").checked) extensions.push(".rar") ;
 	if(document.getElementById("txt").checked) extensions.push(".txt") ;
@@ -57,22 +52,10 @@ function addURL(){
 	}
 	
 	//Read the form for other extensions
-	//TODO add a spell checking
+	var otherExtensions = document.getElementById("addMoreExt").value;
 	
-	var otherExtensions = document.getElementById("addMoreExt").value.split(",");
-	console.log(otherExtensions);
-	otherExtensions.forEach(function (ext){
-		// Check if the first character is a dot ("."). If not, adds it.
-		if(ext.substring(0,1) !== "."){
-			ext = "." + ext;
-		};
-		//Checks if in the extensions array. If not, adds it
-		if (extensions.indexOf(ext) === -1){
-			extensions.push(ext);
-		}
-	});
-		
-	console.log(extensions);
+	extensions = extToArray(extensions,otherExtensions);
+	
 	//Stores the website
 	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name);
 	websites = getAllWebsites();
