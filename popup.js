@@ -5,15 +5,21 @@ function printURLs(){
 	websites=getAllWebsites();
 	document.getElementById("websitesList").innerHTML = "";
 	if(websites.length !== 0){		
-		websites.forEach(PrintOneURL);
+		websites.forEach(printOneURL);
 	} else {
 		var elem = document.getElementById("websitesList");
-		elem.appendChild(document.createTextNode("Add a website by clicking the 'Add Website' button"));
+		var divNode = document.createElement("div")
+		divNode.setAttribute("style","position: absolute; top: 15px; left: 27px; width: 300px");
+		var textNode = document.createTextNode("Add a website by clicking the 'Add Website' button");
+		console.log(divNode);
+		console.log(textNode);
+		divNode.appendChild(textNode);
+		elem.appendChild(divNode);
 	}
 }
 	
 //print just the given URL (so it's not necessary to load all the websites everytime)
-function PrintOneURL(website,index){
+function printOneURL(website,index){
 	var elem = document.getElementById("websitesList");
 	var row = document.createElement("tr");
 	

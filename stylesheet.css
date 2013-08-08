@@ -29,11 +29,12 @@
    font-family: Helvetica, Arial, Sans-Serif;
    text-decoration: none;
    vertical-align: middle;
+   width: 90px;
    }
+   
 .button:hover {
    border-top-color: #28597a;
    background: #28597a;
-   color: #ccc;
    }
 .button:active {
    border-top-color: #1b435e;
@@ -70,6 +71,7 @@
    width: 400px;
    border: 1;
    }
+   
 .urlButton:hover {
    border: 1;
    border-color: transparent;

@@ -4,12 +4,49 @@ var extensionsModified = false;
 
 function webParamListener(website,index){
 	displayWebParameters(website);
-	document.getElementById("deleteWeb").onclick = function () {deleteWebsite(index);};
+	setDeleteWebButton(index);
+	setSaveChangesButton(index);
 	document.getElementById("closeWebParam").onclick = function (){ closeWebParam(index)};
 	checkboxes = document.getElementsByClassName("paramCheck");
 	for(var i=0;i<checkboxes.length;i++){
 		checkboxes[i].onclick = function () { paramModified = true; extensionsModified = true; };
 	}
+}
+
+function setSaveChangesButton(index){
+	var saveChangesButton = document.getElementById("saveChanges");
+	saveChangesButton.onclick = function (){ 
+		saveChanges(index); 
+		extensionsModified = false; 
+		paramModified = false;		
+		
+		// Prints a tick temporarily to indicate that the changes have been saved
+		saveChangesButton.setAttribute("value","\u2714");
+		setTimeout(function() {
+			
+			saveChangesButton.setAttribute("value","Save Changes");
+		}, 1000);
+		
+	};
+	saveChangesButton.onmouseover = function (){
+		saveChangesButton.style["background"] = "#005C00";
+	};
+	saveChangesButton.onmouseout = function (){
+		saveChangesButton.style["background"] = "#429c3e";
+	};		
+}
+
+function setDeleteWebButton(index) {
+	var deleteWebButton = document.getElementById("deleteWeb");
+	deleteWebButton.onclick = function () {deleteWebsite(index);};
+	deleteWebButton.onmouseover = function() {
+		deleteWebButton.setAttribute("value","\u2718");
+		deleteWebButton.style["background"] = "#991F00";
+	};
+	deleteWebButton.onmouseout = function() {
+		deleteWebButton.setAttribute("value","Delete Website");
+		deleteWebButton.style["background"] = "#c44343";
+	};
 }
 
 // Display the websites parameters. Receives the parameters to check for them
@@ -34,7 +71,7 @@ function displayWebParameters(website){
 }
 
 
-// Closes the website parameters windows. 
+//TODO add button Save changes
 
 
 //A confirm window will ask if we want to save the changes
@@ -43,37 +80,49 @@ function closeWebParam(index){
 		websites = getAllWebsites();
 		var r = confirm("Do you want to save the changes made?");
 		if(r){
-			if(extensionsModified){
-				//This is not the same code as the one in addWebsite, as every checkbox has a unique ID
-				//Save the extensions
-				var extensions = [];
-				if(document.getElementById(".pdf").checked) extensions.push(".pdf") ;
-				if(document.getElementById(".doc").checked) {
-					extensions.push(".doc");
-					extensions.push(".docx");
-				}
-				if(document.getElementById(".ppt").checked){
-					extensions.push(".ppt") ;
-					extensions.push(".pptx");
-				}
-				if(document.getElementById(".zip").checked) extensions.push(".zip") ;
-				if(document.getElementById(".rar").checked) extensions.push(".rar") ;
-				if(document.getElementById(".txt").checked) extensions.push(".txt") ;
-				websites[index].extensions = extensions;
-			}
-			if(websites[index].url !== document.getElementById("paramURL").value){
-				websites[index].url = document.getElementById("paramURL").value;
-			}
-			if(websites[index].name = document.getElementById("paramName").value){
-				websites[index].name = document.getElementById("paramName").value;
-			}
+			saveChanges(index);
 		}
+	}
+	extensionsModified= false;
+	paramModified = false;
+	returnToMain();
+}
+
+//Save all the changes done
+function saveChanges(index){
+	var changesMade= false;
+	if(extensionsModified){
+		//Save the extensions
+		var extensions = [];
+		if(document.getElementById(".pdf").checked) extensions.push(".pdf") ;
+		if(document.getElementById(".doc").checked) {
+			extensions.push(".doc");
+			extensions.push(".docx");
+		}
+		if(document.getElementById(".ppt").checked){
+			extensions.push(".ppt") ;
+			extensions.push(".pptx");
+		}
+		if(document.getElementById(".zip").checked) extensions.push(".zip") ;
+		if(document.getElementById(".rar").checked) extensions.push(".rar") ;
+		if(document.getElementById(".txt").checked) extensions.push(".txt") ;
+		websites[index].extensions = extensions;
+		changesMade= true;
+	}
+	if(websites[index].url !== document.getElementById("paramURL").value){
+		websites[index].url = document.getElementById("paramURL").value;
+		changesMade= true;
+	}
+	if(websites[index].name = document.getElementById("paramName").value){
+		websites[index].name = document.getElementById("paramName").value;
+		changesMade= true;
+	}
+	if(changesMade){
 		storeWebsites();
 		printURLs();
 	}
-	returnToMain();
-	paramModified = false;
 }
+
 
 //Deletes a website. A confirm window will apper. If accepted, it will close the window and will go back to the main popup, which shows the updated list
 function deleteWebsite(index){
