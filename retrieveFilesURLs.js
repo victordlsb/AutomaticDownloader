@@ -22,15 +22,13 @@ function retrieveFilesURLs(website, callback){
 				
 				//Look for the extensions desired 
 				var files = new Array();
-				var k;
+				var k;				
 				for (k = 0; k<website.extensions.length;k++){
-					var j = 0;
 					for(var i=0;i<links.length;i++){
 						//Bit of geniality here. Looks in the link being checked if the last characters are 
 						//the extension looked for by substracting the length of the extension to the length of the link
 						if(links[i].search(website.extensions[k])===links[i].length-website.extensions[k].length){
-							files[j]=links[i];
-							j++;
+							files.push(links[i]);
 						}
 					}
 				}
@@ -46,7 +44,7 @@ function retrieveFilesURLs(website, callback){
 					++i;
 					}
 				}
-				
+				console.log(files);
 				//This calls the function that needs the files
 				callback(files);
 				

@@ -11,8 +11,6 @@ function printURLs(){
 		var divNode = document.createElement("div")
 		divNode.setAttribute("style","position: absolute; top: 15px; left: 27px; width: 300px");
 		var textNode = document.createTextNode("Add a website by clicking the 'Add Website' button");
-		console.log(divNode);
-		console.log(textNode);
 		divNode.appendChild(textNode);
 		elem.appendChild(divNode);
 	}
