@@ -38,7 +38,8 @@ function downloadFiles(files,destFolder){
 	for(var i=0;i<files.length;i++){
 		//Looks for the name of the file by splitting the string of the URL and checking the last member of the array
 		arrayFiles = files[i].split("/");
-		destPath = destFolder +  "\\" + arrayFiles[arrayFiles.length-1];
+		console.log(destFolder);
+		destPath = ".\\" + destFolder +  "\\" + arrayFiles[arrayFiles.length-1];
 		console.log(destPath);
 		chrome.downloads.download({filename: destPath, url: files[i], saveAs: false});
 

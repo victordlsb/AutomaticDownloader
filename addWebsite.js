@@ -76,7 +76,6 @@ function addURL(){
 	
 	//Stores the website
 	destFolder = document.getElementById("newDest").value;
-	destFolder = '\\' + destFolder;
 	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name, destFolder);
 	websites = getAllWebsites();
 	websites.push(newWebsite);

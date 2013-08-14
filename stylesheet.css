@@ -48,7 +48,6 @@
    text-decoration: none;
    vertical-align: middle;
    padding: 2.5px 6px;
-   border: 1;
  }
  
 .hyperlink {
@@ -70,11 +69,9 @@
    text-decoration: none;
    vertical-align: middle;
    width: 400px;
-   border: 1;
    }
    
 .urlButton:hover {
-   border: 1;
    border-color: transparent;
    background: #28597a;
    color: #ccc;

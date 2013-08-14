@@ -74,6 +74,10 @@ function displayWebParameters(website){
 	paramURL.onclick = function(){ paramModified = true;};
 	paramURL.appendChild(document.createTextNode(website.url));
 	
+	paramDest = document.getElementById("paramDest");
+	paramDest.value = website.destinationFolder;
+	paramDest.onclick = function(){ paramModified = true;};
+	paramDest.appendChild(document.createTextNode(website.destinationFolder));
 	
 	//Checks the extensions of this file and put the correspondent check if included
 	checkboxes = document.getElementsByClassName ("paramCheck");
@@ -89,7 +93,6 @@ function displayWebParameters(website){
 		extensionsModified = true;
 	};
 }
-
 
 //A confirm window will ask if we want to save the changes
 function closeWebParam(index){
@@ -123,11 +126,15 @@ function saveChanges(index){
 	}
 	if(websites[index].url !== document.getElementById("paramURL").value){
 		websites[index].url = document.getElementById("paramURL").value;
-		changesMade= true;
+		changesMade = true;
 	}
 	if(websites[index].name = document.getElementById("paramName").value){
 		websites[index].name = document.getElementById("paramName").value;
-		changesMade= true;
+		changesMade = true;
+	}
+	if(websites[index].destinationFolder !== document.getElementById("paramDest").value){
+			websites[index].destinationFolder = document.getElementById("paramDest").value;
+			changesMade = true;
 	}
 	if(changesMade){
 		storeWebsites();

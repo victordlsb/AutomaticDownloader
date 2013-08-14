@@ -35,7 +35,7 @@
 				<input type="text" id="newName" class="textBox" size=115><br>
 				<b>URL</b><br>
 				<input type="text" id="newURL" class="textBox" size=115>		
-				<br> <b>Destination Folder</b> <i>This folder will be inside the Google's Chrome Downloads Folder*</i>
+				<br><b>Destination Folder</b> <i>This folder will be inside the Google's Chrome Downloads Folder*</i>
 				<input type="text" id="newDest" class="textBox" size=115>	
 				<br><font size="1"><i>*If you want to create it inside different subfolder, separate it with "\" (e.g.: Uni\1st Sem\Javascript). Leave blank for default downloads folder</i> </font>
 				<input class="button" type="button"style="position: absolute; top: 350px; left: 600px; background: #429c3e" id="addURL" value="Add Website">
@@ -55,20 +55,23 @@
 		<div style="width: 700px; height: 500px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
 			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Website parameters </h2>
 			<form style='position: relative; top:-50px; left:0px'>
-			Name to display: <br> <input type="text" id="paramName" class="textBox" size=115>	
-			<br> URL to track: <br>
+			<b>Name</b> <br> <input type="text" id="paramName" class="textBox" size=115>	
+			<br><b>URL</b><br>
 			<input type="text" id="paramURL" class="textBox" size=115>
+			<br><b>Destination Folder</b> <i> - If changed, the files already downloaded will stay in the previous folder</i>
+			<input type="text" id="paramDest" class="textBox" size=115>	
 			<input class="button" type="button"style="position: absolute; top: -50px; left: 700px; width:20px " id="closeWebParam" value="X">
-			<input class="button" type="button"style="position: absolute; top: 200px; left: 600px; background: #c44343" id="deleteWeb" value="Delete Website">
-			<input class="button" type="button" style="position: absolute; top: 200px; left: 500px; background: #429c3e"; id="saveChanges" value="Save Changes">
-			<input type="checkbox" style="position: absolute; top: 100px; left: 300px" id=".pdf" class="paramCheck"><div style="position:absolute; top:100px; left: 320px">.pdf</div>
-			<input type="checkbox" style="position: absolute; top: 115px; left: 300px" id=".docx" class="paramCheck"><div style="position:absolute; top:115px; left: 320px">.docx</div>
-			<input type="checkbox" style="position: absolute; top: 130px; left: 300px" id=".pptx" class="paramCheck"><div style="position:absolute; top:130px; left: 320px">.pptx</div>
-			<input type="checkbox" style="position: absolute; top: 100px; left: 400px" id=".zip" class="paramCheck"><div style="position:absolute; top:100px; left: 420px">.zip</div>
-			<input type="checkbox" style="position: absolute; top: 115px; left: 400px" id=".rar" class="paramCheck"><div style="position:absolute; top:115px; left: 420px">.rar</div>
-			<input type="checkbox" style="position: absolute; top: 130px; left: 400px" id=".txt" class="paramCheck"><div style="position:absolute; top:130px; left: 420px">.txt</div>
-			<div style="position: absolute; top: 150px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
-			<input type="text" id="paramMoreExt" style="position: absolute; top: 180px; left: 300px">
+			<input class="button" type="button"style="position: absolute; top: 350px; left: 600px; background: #c44343" id="deleteWeb" value="Delete Website">
+			<input class="button" type="button" style="position: absolute; top: 350px; left: 500px; background: #429c3e"; id="saveChanges" value="Save Changes">
+			<div style="position: absolute; top: 160px; left: 300px"><b>Extensions</b></div>
+			<input type="checkbox" style="position: absolute; top: 180px; left: 300px" id=".pdf" class="paramCheck"><div style="position:absolute; top:180px; left: 320px">.pdf</div>
+			<input type="checkbox" style="position: absolute; top: 195px; left: 300px" id=".docx" class="paramCheck"><div style="position:absolute; top:195px; left: 320px">.docx</div>
+			<input type="checkbox" style="position: absolute; top: 210px; left: 300px" id=".pptx" class="paramCheck"><div style="position:absolute; top:210px; left: 320px">.pptx</div>
+			<input type="checkbox" style="position: absolute; top: 180px; left: 400px" id=".zip" class="paramCheck"><div style="position:absolute; top:180px; left: 420px">.zip</div>
+			<input type="checkbox" style="position: absolute; top: 195px; left: 400px" id=".rar" class="paramCheck"><div style="position:absolute; top:195px; left: 420px">.rar</div>
+			<input type="checkbox" style="position: absolute; top: 210px; left: 400px" id=".txt" class="paramCheck"><div style="position:absolute; top:210px; left: 420px">.txt</div>
+			<div style="position: absolute; top: 235px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
+			<input type="text" id="paramMoreExt" style="position: absolute; top: 250px; left: 300px">
 			</form>
 		</div>
 	</body>
