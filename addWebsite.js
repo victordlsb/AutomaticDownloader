@@ -1,7 +1,22 @@
+//Used for the Destination Folder form behaviour
+var keyStroked = false;
+
 // Listener to all the buttons in the add window
 function addPopupListener(){
 	setAddURLButton();
+	setNewDestFormBehaviour();
 	document.getElementById("closeAdd").onclick = returnToMain;
+}
+
+//While the destination Folder Form has not been modified by typing something
+//whatever is written in the name will by automatically typed as folder name too
+function setNewDestFormBehaviour(){
+	document.getElementById("newDest").onkeypress = function() {keyStroked=true;};
+	document.getElementById("newName").onkeyup = function() { 
+		if(!keyStroked){
+			document.getElementById("newDest").value = document.getElementById("newName").value;
+		}
+	}
 }
 
 function setAddURLButton(){
@@ -28,6 +43,8 @@ function displayAddPopup(){
 				document.getElementById("newURL").value = activeTabs[0].url })
 	});
 	document.getElementById("addMoreExt").value = "";
+	document.getElementById("newDest").value = "";
+	keyStroked = false;
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("addPopup").style.visibility = "visible";
 }
@@ -36,6 +53,7 @@ function displayAddPopup(){
 
 //adds a website to the system. 
 function addURL(){
+	//TODO check if the URL is valid
 	//Check for the extensions the website will download
 	var extensions = [];
 	if(document.getElementById("pdf").checked) extensions.push(".pdf") ;
@@ -57,7 +75,9 @@ function addURL(){
 	extensions = extToArray(extensions,otherExtensions);
 	
 	//Stores the website
-	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name);
+	destFolder = document.getElementById("newDest").value;
+	destFolder = '\\' + destFolder;
+	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name, destFolder);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();

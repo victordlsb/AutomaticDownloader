@@ -91,9 +91,6 @@ function displayWebParameters(website){
 }
 
 
-//TODO add button Save changes
-
-
 //A confirm window will ask if we want to save the changes
 function closeWebParam(index){
 	if(paramModified){	

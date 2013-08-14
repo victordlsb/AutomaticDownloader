@@ -13,7 +13,7 @@
 	</head>
 	<body class="body">
 	<!-- Main Popup -->
-		<div style="width: 500px; height: 300px; visibility:visible; background-color: white; position: absolute; top:0px; left:40px"  id="main"> 
+		<div style="visibility:visible; background-color: white; position: absolute; top:0px; left:40px"  id="main"> 
 			<h2 class="h2" align="left">Automatic Downloader</h2>
 			<table>
 			<tr>
@@ -28,30 +28,35 @@
 			<br />	
 		</div>
 	<!-- Add website -->
-		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
+		<div style="width: 700px; height: 500px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
 			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Add a website </h2>					
 			<form style='position: relative; top:-50px; left:0px'>
-				Name to display on list (leave blank to use the URL): <input type="text" id="newName" class="textBox" size=115>		
-				URL to track:
+				<b>Name</b> <i>If left blank, the name will be the</i> URL<br>
+				<input type="text" id="newName" class="textBox" size=115><br>
+				<b>URL</b><br>
 				<input type="text" id="newURL" class="textBox" size=115>		
-				<input class="button" type="button"style="position: absolute; top: 200px; left: 600px; background: #429c3e" id="addURL" value="Add Website">
+				<br> <b>Destination Folder</b> <i>This folder will be inside the Google's Chrome Downloads Folder*</i>
+				<input type="text" id="newDest" class="textBox" size=115>	
+				<br><font size="1"><i>*If you want to create it inside different subfolder, separate it with "\" (e.g.: Uni\1st Sem\Javascript). Leave blank for default downloads folder</i> </font>
+				<input class="button" type="button"style="position: absolute; top: 350px; left: 600px; background: #429c3e" id="addURL" value="Add Website">
 				<input class="button" type="button"style="position: absolute; top: -50px; left: 700px; width: 20px" id="closeAdd" value="X">
-				<input type="checkbox" style="position: absolute; top: 100px; left: 300px" id="pdf" checked=true><div style="position:absolute; top:100px; left: 320px">.pdf</div>
-				<input type="checkbox" style="position: absolute; top: 115px; left: 300px" id="docx" checked=true><div style="position:absolute; top:115px; left: 320px">.docx</div>
-				<input type="checkbox" style="position: absolute; top: 130px; left: 300px" id="pptx" checked=true><div style="position:absolute; top:130px; left: 320px">.pptx</div>
-				<input type="checkbox" style="position: absolute; top: 100px; left: 400px" id="zip" checked=true><div style="position:absolute; top:100px; left: 420px">.zip</div>
-				<input type="checkbox" style="position: absolute; top: 115px; left: 400px" id="rar" checked=true><div style="position:absolute; top:115px; left: 420px">.rar</div>
-				<input type="checkbox" style="position: absolute; top: 130px; left: 400px" id="txt" checked=true><div style="position:absolute; top:130px; left: 420px">.txt</div>
-				<div style="position: absolute; top: 150px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
-				<input type="text" id="addMoreExt" style="position: absolute; top: 180px; left: 300px">
+				<div style="position: absolute; top: 160px; left: 300px"><b>Extensions</b></div>
+				<input type="checkbox" style="position: absolute; top: 180px; left: 300px" id="pdf" checked=true><div style="position:absolute; top:180px; left: 320px">.pdf</div>
+				<input type="checkbox" style="position: absolute; top: 195px; left: 300px" id="docx" checked=true><div style="position:absolute; top:195px; left: 320px">.docx</div>
+				<input type="checkbox" style="position: absolute; top: 210px; left: 300px" id="pptx" checked=true><div style="position:absolute; top:210px; left: 320px">.pptx</div>
+				<input type="checkbox" style="position: absolute; top: 180px; left: 400px" id="zip" checked=true><div style="position:absolute; top:180px; left: 420px">.zip</div>
+				<input type="checkbox" style="position: absolute; top: 195px; left: 400px" id="rar" checked=true><div style="position:absolute; top:195px; left: 420px">.rar</div>
+				<input type="checkbox" style="position: absolute; top: 210px; left: 400px" id="txt" checked=true><div style="position:absolute; top:210px; left: 420px">.txt</div>
+				<div style="position: absolute; top: 235px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
+				<input type="text" id="addMoreExt" style="position: absolute; top: 250px; left: 300px">
 			</form>
 		</div>
 	<!-- Single website configuration -->
-		<div style="width: 500px; height: 300px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
+		<div style="width: 700px; height: 500px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
 			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Website parameters </h2>
 			<form style='position: relative; top:-50px; left:0px'>
-			Name to display: <input type="text" id="paramName" class="textBox" size=115>	
-			URL to track:
+			Name to display: <br> <input type="text" id="paramName" class="textBox" size=115>	
+			<br> URL to track: <br>
 			<input type="text" id="paramURL" class="textBox" size=115>
 			<input class="button" type="button"style="position: absolute; top: -50px; left: 700px; width:20px " id="closeWebParam" value="X">
 			<input class="button" type="button"style="position: absolute; top: 200px; left: 600px; background: #c44343" id="deleteWeb" value="Delete Website">

@@ -19,14 +19,14 @@ function retrieveFilesURLs(website, callback){
 					}		
 					return href;
 				});	
-				
+			
 				//Look for the extensions desired 
 				var files = new Array();
 				var k;				
 				for (k = 0; k<website.extensions.length;k++){
 					for(var i=0;i<links.length;i++){
 						//Bit of geniality here. Looks if the link contains the substring with the extension
-						//and if so, it checks that its placed in the last position of the string
+						//and if so, it checks that its placed in the last position of the string by using the length of the extension string
 						if(links[i].search(website.extensions[k])===links[i].length-website.extensions[k].length){
 							files.push(links[i]);
 						}
@@ -46,7 +46,7 @@ function retrieveFilesURLs(website, callback){
 				}
 				
 				//This calls the function that needs the files
-				callback(files);
+				callback(files,website.destinationFolder);
 				
 			} else {
 				console.error(xhr.statusText);
