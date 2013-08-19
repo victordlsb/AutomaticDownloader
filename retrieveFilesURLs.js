@@ -51,7 +51,13 @@ function retrieveFilesURLs(website, callback){
 				auxFiles.forEach(function(auxFile,index) {
 					auxFile = auxFile.split("/");
 					auxFile = auxFile[auxFile.length-1];
-					if(website.filesDownloaded.indexOf(auxFile) !== -1 || website.filesOmitted.indexOf(auxFile) !== -1){
+					//Needed as the array is 2D and is not natively supported by javascript
+					var filesDownloadedArray = [];
+					for(var i=0;i<website.filesDownloaded.length;i++){
+						filesDownloadedArray.push(website.filesDownloaded[i][0]); 
+					}
+					console.log(filesDownloadedArray);
+					if(filesDownloadedArray.indexOf(auxFile) !== -1 || website.filesOmitted.indexOf(auxFile) !== -1){
 							indexFiles.push(index);
 					};
 				});
