@@ -52,7 +52,7 @@ function printOneURL(website,index){
 	listFilesButton.setAttribute('name','list'+index);
 	listFilesButton.setAttribute('value','List Files');
 	listFilesButton.setAttribute("class","button");
-	listFilesButton.onclick = function() {}; //TODO make the function to list the files to be downloaded
+	listFilesButton.onclick = function() {webFilesListener(website,index)}; 
 	
 	column0.appendChild(hyperlink);
 	column1.appendChild(url);
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	main();
 	mainPopupListener();
 	addPopupListener();
+	console.log(websites);
 });
 
 

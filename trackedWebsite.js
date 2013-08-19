@@ -6,6 +6,7 @@ var TrackedWebsite = function(url,extensions,name,destinationFolder){
 	this.url = url;
 	this.name = name;
 	this.destinationFolder = destinationFolder;
-		
+	this.filesDownloaded = [];
+	this.filesOmitted = [];
 
 }

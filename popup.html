@@ -7,6 +7,7 @@
 		<script src="popup.js"></script>
 		<script src="addWebsite.js"></script>
 		<script src="webParam.js"></script>
+		<script src="webFiles.js"></script>
 		<script src="extensionFunctions.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<title>Automatic Downloader Main Popup</title>
@@ -28,7 +29,7 @@
 			<br />	
 		</div>
 	<!-- Add website -->
-		<div style="width: 700px; height: 500px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
+		<div style="width: 700px; height: 450px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="addPopup" value="Add Website To The Tracker">
 			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Add a website </h2>					
 			<form style='position: relative; top:-50px; left:0px'>
 				<b>Name</b> <i>If left blank, the name will be the</i> URL<br>
@@ -52,7 +53,7 @@
 			</form>
 		</div>
 	<!-- Single website configuration -->
-		<div style="width: 700px; height: 500px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
+		<div style="width: 700px; height: 450px; visibility:hidden; background-color: white; position: absolute; top:50px; left:40px" id="webParam" >
 			<h2 class="h2" style='position: relative; top:-50px; left:0px'> Website parameters </h2>
 			<form style='position: relative; top:-50px; left:0px'>
 			<b>Name</b> <br> <input type="text" id="paramName" class="textBox" size=115>	
@@ -74,5 +75,13 @@
 			<input type="text" id="paramMoreExt" style="position: absolute; top: 250px; left: 300px">
 			</form>
 		</div>
+	<!-- Single website inspect files -->
+		<div style="visibility:hidden; position: absolute; top: 50px; left: 40px" id="webFiles">
+			<input class="button" type="button"style="position: absolute; left: 700px; width:20px " id="closeWebFiles" value="X">
+			<h2 id="webFilesName" class="h2" style='position: relative; top:-50px; left:0px'></h2>
+			<div id="newFiles" style="background-color: #99FF99; width:700px; position: relative; top:-50px"><h3 class="h3">New files to download</h3></div>
+			<div id="omittedFiles" style="background-color: #FFCC99; width:700px; position: relative; top:-50px"><h3 class="h3">Files omitted</h3></div>
+			<div id="downloadedFiles" style="position: relative; top:-50px"></div>
+		</div>	
 	</body>
 </html>

@@ -11,6 +11,9 @@ function webParamListener(website,index){
 	for(var i=0;i<checkboxes.length;i++){
 		checkboxes[i].onclick = function () { paramModified = true; extensionsModified = true; };
 	}
+		
+	document.getElementById("main").style.visibility = "hidden";
+	document.getElementById("webParam").style.visibility = "visible";
 }
 
 //This functions gets the extensions and conver to String only those which are not from the default program;
@@ -84,8 +87,6 @@ function displayWebParameters(website){
 	for(var i=0;i<checkboxes.length;i++){
 		checkboxes[i].checked = (website.extensions.indexOf(checkboxes[i].id) === -1) ? false : true;
 	}
-	document.getElementById("main").style.visibility = "hidden";
-	document.getElementById("webParam").style.visibility = "visible";
 	
 	document.getElementById("paramMoreExt").value = extToString(website.extensions);
 	document.getElementById("paramMoreExt").onclick = function () { 

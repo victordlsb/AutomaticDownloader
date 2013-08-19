@@ -45,8 +45,29 @@ function retrieveFilesURLs(website, callback){
 					}
 				}
 				
+				//This checks whether the files have already been  downloaded or must be omitted to avoid download them
+				var auxFiles = files;
+				var indexFiles = [];
+				auxFiles.forEach(function(auxFile,index) {
+					auxFile = auxFile.split("/");
+					auxFile = auxFile[auxFile.length-1];
+					if(website.filesDownloaded.indexOf(auxFile) !== -1 || website.filesOmitted.indexOf(auxFile) !== -1){
+							indexFiles.push(index);
+					};
+				});
+				for(var i=0;i<indexFiles.length;i++){
+					delete auxFiles[indexFiles[i]];
+				};
+				files = [];
+				auxFiles.forEach(function(file){
+					if(file){
+						files.push(file);
+					}
+				});				
+				
 				//This calls the function that needs the files
-				callback(files,website.destinationFolder);
+				callback(files,website);
+				
 				
 			} else {
 				console.error(xhr.statusText);

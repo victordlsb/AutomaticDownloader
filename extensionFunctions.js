@@ -27,14 +27,15 @@ function removeAndReloadWebsites(){
 function returnToMain(){
 	document.getElementById("main").style.visibility = "visible";
 	document.getElementById("webParam").style.visibility = "hidden";
-		document.getElementById("addPopup").style.visibility = "hidden";
-
+	document.getElementById("addPopup").style.visibility = "hidden";
+	document.getElementById("webFiles").style.visibility="hidden";
 }
 
-function downloadFiles(files,destFolder){
+function downloadFiles(files,website){
 	//TODO: be able to indicate where to download it automatically. Not possible until Google updates its APIs
 	//TODO check if end of the url correspond to the filename. If not, not download
-	
+	destFolder = website.destinationFolder;
+	var index = websites.indexOf(website);
 	for(var i=0;i<files.length;i++){
 		//Looks for the name of the file by splitting the string of the URL and checking the last member of the array
 		arrayFiles = files[i].split("/");
@@ -42,8 +43,14 @@ function downloadFiles(files,destFolder){
 		destPath = ".\\" + destFolder +  "\\" + arrayFiles[arrayFiles.length-1];
 		console.log(destPath);
 		chrome.downloads.download({filename: destPath, url: files[i], saveAs: false});
-
+		//TODO make sure the files are downloaded before adding them to the filesDownloaded array
+		var date = new Date();
+		date.toString();
+		websites[index].filesDownloaded.push([arrayFiles[arrayFiles.length-1],date]);
+		
 	}
+	storeWebsites();
+	
 }
 
 

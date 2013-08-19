@@ -1,5 +1,5 @@
 .body{
-	width: 800px; 
+	width: 780px; 
 	height: 500px;
 	background-color: white;
 	overflow-y: scroll;
@@ -36,6 +36,7 @@
 .button:hover {
    border-top-color: #28597a;
    background: #28597a;
+   overflow-x: hidden;
    }
 .button:active {
    border-top-color: #1b435e;
@@ -72,6 +73,7 @@
    }
    
 .urlButton:hover {
+	overflow-x: hidden;
    border-color: transparent;
    background: #28597a;
    color: #ccc;
@@ -88,4 +90,12 @@
     line-height: 40px;
     font-family: 'Orienta', sans-serif;
 }
-   
+  
+.h3 {
+    margin: 1em 0 0.5em 0;
+    color: #343434;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 40px;
+    font-family: 'Orienta', sans-serif;
+}
