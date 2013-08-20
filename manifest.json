@@ -21,7 +21,11 @@
 	},
 	
 	"background":{
-		"scripts": ["background.js"]
+		"scripts": [
+			"background.js",
+			"retrieveFilesURLs.js",
+			"extensionFunctions.js"],
+		"persistent": false
 	}
 	
 

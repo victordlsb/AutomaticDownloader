@@ -70,7 +70,6 @@ function clickDownloadFiles(website){
 }
 
 function main(){
-//	removeAndReloadWebsites(); //For Test Purposes
 //	localStorage.removeItem('websites'); //For Test Purposes
 	printURLs();
 }

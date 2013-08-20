@@ -12,7 +12,6 @@ function getAllWebsites(){
 		return new Array();
 	}
 	return JSON.parse(localStorage.websites);
-	
 }
 	
 //For test purposes

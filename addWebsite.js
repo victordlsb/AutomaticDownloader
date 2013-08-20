@@ -76,7 +76,9 @@ function addURL(){
 	
 	//Stores the website
 	destFolder = document.getElementById("newDest").value;
-	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name, destFolder);
+	//TODO change this schedule for the real schedule
+	var schedule = "";
+	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name, destFolder, schedule);
 	websites = getAllWebsites();
 	websites.push(newWebsite);
 	storeWebsites();

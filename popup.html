@@ -9,6 +9,7 @@
 		<script src="webParam.js"></script>
 		<script src="webFiles.js"></script>
 		<script src="extensionFunctions.js"></script>
+		<script src="Schedule.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<title>Automatic Downloader Main Popup</title>
 	</head>
@@ -50,6 +51,18 @@
 				<input type="checkbox" style="position: absolute; top: 210px; left: 400px" id="txt" checked=true><div style="position:absolute; top:210px; left: 420px">.txt</div>
 				<div style="position: absolute; top: 235px; left: 300px">Add other extensions, separated by commas (,) e.g: .xls,.iso</div>
 				<input type="text" id="addMoreExt" style="position: absolute; top: 250px; left: 300px">
+				<div style = "position: absolute; top: 160px;" id = "addSchedule">
+					<b>Schedule</b><br><br>
+					<input type="radio" id = "checkOrDownload" name="checkOrDownload" value="download" checked=true>Download</input><br>
+					<input type="radio" id = "checkOrDownload" name="checkOrDownload" value="check">Only Check<br><br>
+					Every
+					<select id="addBasis" style = "position: relative; left: 10px">
+						<option value="hourly">Hour</option>
+						<option value="daily">Day</option>
+						<option value="weekly">Week</option>
+						<option value="monthly">Month</option>
+					</select>
+				</div>
 			</form>
 		</div>
 	<!-- Single website configuration -->
