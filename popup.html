@@ -55,17 +55,19 @@
 					<b>Schedule</b><br><br>
 					<input type="radio" id = "addDownload" name="checkOrDownload" value="download" checked=true>Download</input><br>
 					<input type="radio" name="checkOrDownload" value="check">Only Check<br><br>
-					Every
-					<select id="addBasis" style = "position: relative; left: 10px">
-						<option id="hourlyBasis" value="hourly">Hour</option>
-						<option id="dailyBasis"  value="daily" selected>Day</option>
-						<option id="weeklyBasis"  value="weekly">Week</option>
-						<option id="monthlyBasis" value="monthly">Month</option>
-					</select>
-					<div style="position:relative; top:0px; left: 10px">at 
-						<select id="addHour" style = "width: 25px; position: relative; left: 10px"></select>
-						<select id="addMin" style = "width: 25px; position: relative; left: 10px"></select></div>
-					<div id = "onDay" style="visibility: hidden; position:relative; top:0px; left: 10px">Day <select id="addDay" value=0 style = "width: 25px; position: relative; left: 10px"></select></div>
+					<div style="width: 150px; position: absolute; top: 27px; left: 90px">
+						Every
+						<select id="addBasis" style = "position: relative; left: 9px">
+							<option id="hourlyBasis" value="hourly">Hour</option>
+							<option id="dailyBasis"  value="daily" selected>Day</option>
+							<option id="weeklyBasis"  value="weekly">Week</option>
+							<option id="monthlyBasis" value="monthly">Month</option>
+						</select>
+						<div style="position:relative; top:0px; left: 10px">at 
+							<select id="addHour" style = "width: 25px; position: relative; left: 20px"></select>
+							<select id="addMin" style = "width: 25px; position: relative; left: 20px"></select></div>
+						<div id = "onDay" style="visibility: hidden; position:relative; top:0px; left: 10px">Day <select id="addDay" value=0 style = "width: 25px; position: relative; left: 10px"></select></div>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -94,17 +96,19 @@
 					<b>Schedule</b><br><br>
 					<input type="radio" id = "paramDownload" name="checkOrDownload" value="download" checked=true>Download</input><br>
 					<input type="radio" id = "paramCheck" name="checkOrDownload" value="check">Only Check<br><br>
-					Every
-					<select id="paramBasis" style = "position: relative; left: 10px">
-						<option value="hourly">Hour</option>
-						<option value="daily" >Day</option>
-						<option value="weekly">Week</option>
-						<option value="monthly">Month</option>
-					</select>
-					<div style="position:relative; top:0px; left: 10px">at 
-						<select id="paramHour" style = "width: 25px; position: relative; left: 10px"></select>
-						<select id="paramMin" style = "width: 25px; position: relative; left: 10px"></select></div>
-					<div id = "paramOnDay" style="visibility: hidden; position:relative; top:0px; left: 10px">Day <select id="paramDay" value=0 style = "width: 25px; position: relative; left: 10px"></select></div>
+					<div style="width: 150px; position: absolute; top: 27px; left: 90px">
+						Every
+						<select id="paramBasis" style = "position: relative; left: 9px">
+							<option value="hourly">Hour</option>
+							<option value="daily" >Day</option>
+							<option value="weekly">Week</option>
+							<option value="monthly">Month</option>
+						</select>
+						<div style="position:relative; top:0px; left: 10px">at 
+							<select id="paramHour" style = "width: 25px; position: relative; left: 20px"></select>
+							<select id="paramMin" style = "width: 25px; position: relative; left: 20px"></select></div>
+						<div id = "paramOnDay" style="visibility: hidden; position:relative; top:0px; left: 10px">Day <select id="paramDay" value=0 style = "width: 25px; position: relative; left: 10px"></select></div>
+					</div>
 				</div>
 			</form>
 		</div>
