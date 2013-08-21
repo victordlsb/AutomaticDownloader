@@ -1,5 +1,6 @@
 var websites = new Array();
-
+var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+Object.freeze (weekDays);
 
 function storeWebsites(){
 	localStorage.removeItem("websites");
@@ -28,6 +29,10 @@ function returnToMain(){
 	document.getElementById("webParam").style.visibility = "hidden";
 	document.getElementById("addPopup").style.visibility = "hidden";
 	document.getElementById("webFiles").style.visibility="hidden";
+	document.getElementById("addHour").style.visibility = "hidden";
+	document.getElementById("onDay").style.visibility = "hidden";
+	document.getElementById("paramHour").style.visibility = "hidden";
+	document.getElementById("paramOnDay").style.visibility = "hidden";
 }
 
 function downloadFiles(files,website){
@@ -35,6 +40,8 @@ function downloadFiles(files,website){
 	//TODO check if end of the url correspond to the filename. If not, not download
 	destFolder = website.destinationFolder;
 	var index = websites.indexOf(website);
+	var date = new Date();
+	date.toString();
 	for(var i=0;i<files.length;i++){
 		//Looks for the name of the file by splitting the string of the URL and checking the last member of the array
 		arrayFiles = files[i].split("/");
@@ -43,11 +50,10 @@ function downloadFiles(files,website){
 		console.log(destPath);
 		chrome.downloads.download({filename: destPath, url: files[i], saveAs: false});
 		//TODO make sure the files are downloaded before adding them to the filesDownloaded array
-		var date = new Date();
-		date.toString();
 		websites[index].filesDownloaded.push([arrayFiles[arrayFiles.length-1],date]);
 		
 	}
+	websites[index].schedule.lastCheck = date;
 	storeWebsites();
 	
 }

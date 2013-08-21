@@ -99,3 +99,9 @@
     line-height: 40px;
     font-family: 'Orienta', sans-serif;
 }
+
+select{
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	border-color: grey;
+}
