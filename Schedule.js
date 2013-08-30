@@ -10,5 +10,7 @@ function Schedule(download,typeSched,atDay,atHour,atMin){
 	//atMin: int with the minute. Only 00, 15, 30 and 45 will be allowed
 	this.atMin = atMin;
 	//lastCheck: date object indicating last moment it was checked. Initialized to an empty string until checked
-	this.lastCheck = ""
+	this.lastCheck = "";
+	//nextCheck: date object indicating when it must be checked again. 
+	this.nextCheck = "";
 }

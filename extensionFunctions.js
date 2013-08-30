@@ -36,7 +36,6 @@ function returnToMain(){
 }
 
 function downloadFiles(files,website){
-	//TODO: be able to indicate where to download it automatically. Not possible until Google updates its APIs
 	//TODO check if end of the url correspond to the filename. If not, not download
 	destFolder = website.destinationFolder;
 	var index = websites.indexOf(website);
@@ -56,6 +55,15 @@ function downloadFiles(files,website){
 	websites[index].schedule.lastCheck = date;
 	storeWebsites();
 	
+}
+
+function storeDownloadableFiles(files,website){
+	var index = websites.indexOf(website);
+	var date = new Date();
+	date.toString();
+	websites[index].linksToDownload = files;
+	websites[index].schedule.lastCheck = date;
+	storeWebsites();
 }
 
 
