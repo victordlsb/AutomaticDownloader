@@ -12,14 +12,14 @@ function setAlarms(website,index){
 	//This will make a check if it has never done one on that website or 
 	if(schedule.lastCheck === "" || schedule.nextCheck < new Date()){
 		if(schedule.download){
-			retrieveFileURLs(website,downloadFiles);
+			retrieveFilesURLs(website,downloadFiles);
 		} else {
-			retrieveFileURLs(website,storeDowloadableFiles);
+			retrieveFilesURLs(website,storeDownloadableFiles);
 		}
 	}
 		
-	switch (type){
+	// switch (type){
 		
-		case "hourly":
+		// case "hourly":
 			
 }

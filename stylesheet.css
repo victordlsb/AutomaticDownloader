@@ -100,6 +100,61 @@
     font-family: 'Orienta', sans-serif;
 }
 
+.xbutton {
+   border-top: 0px;
+   background: #c44343;
+   border: 0;
+   padding: 2px 4px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 8px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.xbutton:hover {
+   border-top-color: #781a1a;
+   background: #781a1a;
+   color: #ccc;
+   }
+.xbutton:active {
+   border-top-color: #541111;
+   background: #541111;
+   }
+   
+  .xbuttongreen {
+   border-top: 0px;
+   background: #429c3e;
+   border: 0;
+   padding: 2px 4px;
+   -webkit-border-radius: 0px;
+   -moz-border-radius: 0px;
+   border-radius: 0px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 8px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.xbuttongreen:hover {
+   border-top-color: #214E1F;
+   background: #214E1F;
+   color: #ccc;
+   }
+.xbuttongreen:active {
+   border-top-color: #1A3E19;
+   background: #1A3E19;
+   }
 select{
 	-moz-appearance: none;
 	-webkit-appearance: none;

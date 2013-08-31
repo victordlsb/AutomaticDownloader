@@ -56,7 +56,6 @@ function retrieveFilesURLs(website, callback){
 					for(var i=0;i<website.filesDownloaded.length;i++){
 						filesDownloadedArray.push(website.filesDownloaded[i][0]); 
 					}
-					console.log(filesDownloadedArray);
 					if(filesDownloadedArray.indexOf(auxFile) !== -1 || website.filesOmitted.indexOf(auxFile) !== -1){
 							indexFiles.push(index);
 					};
