@@ -1,5 +1,5 @@
 var websites = new Array();
-var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 Object.freeze (weekDays);
 
 function storeWebsites(){

@@ -11,6 +11,4 @@ function Schedule(download,typeSched,atDay,atHour,atMin){
 	this.atMin = atMin;
 	//lastCheck: date object indicating last moment it was checked. Initialized to an empty string until checked
 	this.lastCheck = "";
-	//nextCheck: date object indicating when it must be checked again. 
-	this.nextCheck = "";
 }
