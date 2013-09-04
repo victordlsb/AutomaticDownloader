@@ -182,6 +182,7 @@ function addURL(){
 	} else {
 		printOneURL(newWebsite,websites.length-1);
 	}
+	setAlarms(newWebsite);
 	returnToMain();
 }
 

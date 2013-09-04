@@ -1,10 +1,14 @@
 var websites = new Array();
 var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 Object.freeze (weekDays);
 
 function storeWebsites(){
 	localStorage.removeItem("websites");
 	localStorage.websites=JSON.stringify(websites);
+	chrome.alarms.clearAll();
+	websites.forEach(setAlarms);	
+
 }
 
 
@@ -35,6 +39,21 @@ function returnToMain(){
 	document.getElementById("paramOnDay").style.visibility = "hidden";
 }
 
+function printAlarmsLog(){
+	chrome.alarms.getAll(function (alarms){ 
+	for(var i=0;i<alarms.length;i++){
+		for(var j=0;j<websites.length;j++){
+			if(websites[j].id.toString() === alarms[i].name){
+				console.log(websites[j].name);
+				break;
+			}
+		}
+		console.log(new Date(alarms[i].scheduledTime));
+	};
+	});
+}
+
+
 function downloadFiles(files,website){
 	//TODO check if end of the url correspond to the filename. If not, not download
 	destFolder = website.destinationFolder;
@@ -63,6 +82,7 @@ function storeDownloadableFiles(files,website){
 	websites[index].linksToDownload = files;
 	websites[index].schedule.lastCheck = date;
 	storeWebsites();
+	printURLs;
 }
 
 

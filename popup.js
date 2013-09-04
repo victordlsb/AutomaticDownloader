@@ -46,11 +46,11 @@ function printOneURL(website,index){
 	downloadButton.setAttribute("class","button");
 	downloadButton.onclick = function() {clickDownloadFiles(website);};
 	
-	//defines the properties of the download button of each website
+	//defines the properties of the list files button of each website
 	var listFilesButton = document.createElement('input');
 	listFilesButton.setAttribute('type','button');
 	listFilesButton.setAttribute('name','list'+index);
-	listFilesButton.setAttribute('value','List Files');
+	listFilesButton.setAttribute('value','List Files (' + website.linksToDownload.length + " new)");
 	listFilesButton.setAttribute("class","button");
 	listFilesButton.onclick = function() {webFilesListener(website,index)}; 
 	
@@ -66,7 +66,7 @@ function printOneURL(website,index){
 }
 
 function clickDownloadFiles(website){
-	retrieveFilesURLs(website,downloadFiles);
+	downloadNewFiles(website);
 }
 
 function main(){
@@ -82,9 +82,31 @@ function downloadAllFiles(){
 	}
 }
 
+function inspectAllWebsites(){
+	websites = getAllWebsites();
+	for(var i=0;i<websites.length;i++){
+		checkNewFiles(websites[i]);
+	}
+}
+
 function mainPopupListener(){
 	document.getElementById('dlAll').onclick = downloadAllFiles;
 	document.getElementById("addWeb").onclick = displayAddPopup;
+	document.getElementById("inspect").onclick = inspectAllWebsites;
+	document.getElementById("clearAll").onclick = function() {
+		var r = confirm("Do you want to clear all the websites? (There is no way back)");
+		if(r){
+			chrome.alarms.clearAll();
+			localStorage.removeItem('websites');
+			websites = [];
+			printURLs();
+		}
+	}
+	chrome.runtime.onMessage.addListener(function(request){
+		if(request.type = "printURLs"){
+			printrURLs();
+		}
+	});
 }
 
 document.addEventListener('DOMContentLoaded', function () {

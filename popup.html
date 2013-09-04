@@ -10,6 +10,7 @@
 		<script src="webFiles.js"></script>
 		<script src="extensionFunctions.js"></script>
 		<script src="Schedule.js"></script>
+		<script src="background.js"></script>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 		<title>Automatic Downloader Main Popup</title>
 	</head>
@@ -19,9 +20,9 @@
 			<h2 class="h2" align="left">Automatic Downloader</h2>
 			<table>
 			<tr>
-			<th><input class="button" type='button' id="config" value="Configuration" ></input></th>
+			<th><input class="buttongreen" type='button' id='addWeb' value="Add Website"  ></input></th>
+			<th><input class="buttonred" type='button' id="clearAll" value="Clear All List" ></input></th>
 			<th><input class="button" type='button' id="inspect" value="Inspect Webs" ></input></th>
-			<th><input class="button" type='button' id='addWeb' value="Add Website"  ></input></th>
 			<th><input class="button" type='button' id="dlAll" value="Download All" ></input></th>
 			</tr>
 			</table>
@@ -57,7 +58,7 @@
 					<input type="radio" name="checkOrDownload" value="check">Only Check<br><br>
 					<div style="width: 150px; position: absolute; top: 27px; left: 90px">
 						Every
-						<select id="addBasis" style = "position: relative; left: 9px">
+						<select id="addBasis" style = "position: relative; left: 11px; width:53px">
 							<option id="hourlyBasis" value="hourly">Hour</option>
 							<option id="dailyBasis"  value="daily" selected>Day</option>
 							<option id="weeklyBasis"  value="weekly">Week</option>
@@ -98,7 +99,7 @@
 					<input type="radio" id = "paramCheck" name="checkOrDownload" value="check">Only Check<br><br>
 					<div style="width: 150px; position: absolute; top: 27px; left: 90px">
 						Every
-						<select id="paramBasis" style = "position: relative; left: 9px">
+						<select id="paramBasis" style = "position: relative; left: 11px; width:53px">
 							<option value="hourly">Hour</option>
 							<option value="daily" >Day</option>
 							<option value="weekly">Week</option>

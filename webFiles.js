@@ -15,6 +15,7 @@ function downloadNewFiles(website){
 		downloadFiles(files,website);
 		displayDownloadedFiles(website);
 		displayFilesToDownload(website);
+		printURLs();
 	});
 }
 
@@ -128,6 +129,7 @@ function displayDownloadedFiles(website){
 		var ind = i;
 		deleteDownloadedFileButton.onclick = function() {
 			var index = websites.indexOf(website);
+			console.log(index);
 			websites[index].filesDownloaded.splice(ind,1);			
 			storeWebsites();
 			checkNewFiles(websites[index]);	

@@ -241,7 +241,10 @@ function saveChanges(index){
 		changesMade= true;
 	}
 	if(changesMade){
+		chrome.alarms.clear(websites[index].id.toString());
 		storeWebsites();
+		websites = getAllWebsites();
+		setAlarms(websites[index]);
 		printURLs();
 	}
 }
@@ -252,7 +255,6 @@ function deleteWebsite(index){
 	var r=confirm("Are you sure you want to delete this website?");
 	if(r === true){
 		websites.splice(index, 1);
-		localStorage.removeItem('websites');
 		storeWebsites();
 		printURLs();
 		returnToMain();
