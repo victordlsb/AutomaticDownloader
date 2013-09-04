@@ -48,17 +48,25 @@ function retrieveFilesURLs(website, callback){
 				//This checks whether the files have already been  downloaded or must be omitted to avoid download them
 				var auxFiles = files;
 				var indexFiles = [];
-				auxFiles.forEach(function(auxFile,index) {
-					auxFile = auxFile.split("/");
+				auxFiles.forEach(function(auxURL,index) {
+					auxFile = auxURL.split("/");
 					auxFile = auxFile[auxFile.length-1];
 					//Needed as the array is 2D and is not natively supported by javascript
 					var filesDownloadedArray = [];
+					var dateFilesDownloaded = [];
 					for(var i=0;i<website.filesDownloaded.length;i++){
 						filesDownloadedArray.push(website.filesDownloaded[i][0]); 
+						dateFilesDownloaded.push(new Date(website.filesDownloaded[i][1]));
 					}
-					if(filesDownloadedArray.indexOf(auxFile) !== -1 || website.filesOmitted.indexOf(auxFile) !== -1){
+					var indexFileDownloaded = filesDownloadedArray.indexOf(auxFile);
+					if(website.filesOmitted.indexOf(auxFile) !== -1){
 							indexFiles.push(index);
-					};
+					} else if (indexFileDownloaded !== -1){ // This checks whether there is a newer version to download
+						dateLastModified = checkLastModified(url);
+						if(dateLastModified < dateFilesDownloaded[i]){
+							indexFiles.push(index);
+						}
+					}
 				});
 				for(var i=0;i<indexFiles.length;i++){
 					delete auxFiles[indexFiles[i]];

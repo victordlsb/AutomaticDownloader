@@ -64,11 +64,31 @@ function downloadFiles(files,website){
 		//Looks for the name of the file by splitting the string of the URL and checking the last member of the array
 		arrayFiles = files[i].split("/");
 		destPath = ".\\" + destFolder +  "\\" + arrayFiles[arrayFiles.length-1];
-		chrome.downloads.download({filename: destPath, url: files[i], saveAs: false});
+		chrome.downloads.download({filename: destPath, conflictAction:"overwrite", url: files[i], saveAs: false});
 		//TODO make sure the files are downloaded before adding them to the filesDownloaded array
 		websites[index].filesDownloaded.push([arrayFiles[arrayFiles.length-1],date]);
-		
 	}
+	//This delete duplicated files
+	var indexToDelete = [];
+	for(var i=0;i<websites[index].filesDownloaded.length-1;i++){
+		for(var j=i+1;j<websites[index].filesDownloaded.length;j++){
+			if(websites[index].filesDownloaded[i][0] === websites[index].filesDownloaded[j][0]){
+				if(websites[index].filesDownloaded[i][1] < websites[index].filesDownloaded[j][1]){
+					indexToDelete.push(i);
+				} 
+			}
+		}
+	}
+	var auxArrayDownloaded = websites[index].filesDownloaded;
+	for(var i=0;i<indexToDelete.length;i++){
+		delete auxArrayDownloaded[indexToDelete];
+	}
+	websites[index].filesDownloaded = [];
+	auxArrayDownloaded.forEach(function(file){
+		if(file){
+			websites[index].filesDownloaded.push(file);
+		}
+	});
 	websites[index].linksToDownload = [];
 	websites[index].schedule.lastCheck = date;
 	storeWebsites();
@@ -85,6 +105,15 @@ function storeDownloadableFiles(files,website){
 	printURLs;
 }
 
+function checkLastModified(url){
+	xhraux = new XMLHttpRequest();
+	xhraux.open("GET",url,false);
+	xhraux.send();
+	var lastMod = xhraux.getResponseHeader ("Last-Modified");
+	xhraux.abort();
+	lastMode = new Date(lastMod);
+	return lastMode;
+}
 
 //TODO add a format checking
 //Transforms an string of extensions separated by commas (",") for an array 
