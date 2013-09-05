@@ -62,8 +62,11 @@ function retrieveFilesURLs(website, callback){
 					if(website.filesOmitted.indexOf(auxFile) !== -1){
 							indexFiles.push(index);
 					} else if (indexFileDownloaded !== -1){ // This checks whether there is a newer version to download
-						dateLastModified = checkLastModified(url);
-						if(dateLastModified < dateFilesDownloaded[i]){
+						dateLastModified = checkLastModified(auxURL);
+						console.log(dateLastModified);
+						console.log(dateFilesDownloaded[indexFileDownloaded]);
+						console.log(dateLastModified < dateFilesDownloaded[indexFileDownloaded]);
+						if(dateLastModified < dateFilesDownloaded[indexFileDownloaded]){
 							indexFiles.push(index);
 						}
 					}
