@@ -171,12 +171,13 @@ function addURL(){
 	//Stores the website
 	destFolder = document.getElementById("newDest").value;
 
-
-	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name, destFolder, schedule);
+	var date = new Date();
+	newWebsite = new TrackedWebsite(document.getElementById("newURL").value,extensions, name, destFolder, schedule,date.getTime());
 	websites = getAllWebsites();
+	newWebsite = JSON.stringify(newWebsite);
+	newWebsite = JSON.parse(newWebsite);
 	websites.push(newWebsite);
 	storeWebsites();
-	
 	if(websites.length === 1){  // This way cleans the screen before printing the first URL
 		printURLs();
 	} else {

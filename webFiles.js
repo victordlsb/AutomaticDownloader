@@ -12,18 +12,32 @@ function webFilesListener(website){
 
 function downloadNewFiles(website){
 	retrieveFilesURLs(website,function(files,website){ 
-		downloadFiles(files,website);
-		displayDownloadedFiles(website);
-		displayFilesToDownload(website);
-		printURLs();
+		var inMain = false;
+		if(document.getElementById("main").style.visibility === "visible"){
+			inMain = true;
+		}
+		web = downloadFiles(files,website);
+		webFilesListener(web);
+		chrome.runtime.sendMessage({type: "printURLs"});
+		if(inMain){
+			returnToMain();
+		}
 	});
 }
 
 
 function checkNewFiles(website){
 	retrieveFilesURLs(website, function(files,website){
-		storeDownloadableFiles(files,website);
-		displayFilesToDownload(website);
+		var inMain = false;
+		if(document.getElementById("main").style.visibility === "visible"){
+			inMain = true;
+		}
+		web = storeDownloadableFiles(files,website);
+		webFilesListener(web);
+		chrome.runtime.sendMessage({type: "printURLs"});
+		if(inMain){
+			returnToMain();
+		}
 	});
 }
 
@@ -47,12 +61,19 @@ function displayFilesToDownload(website){
 		omitFileButton.style.position = "relative";
 		var ind = i;
 		omitFileButton.onclick = function() {
-			var index = websites.indexOf(website);
-			websites[index].linksToDownload.splice(ind,1);		
-			websites[index].filesOmitted.push(newFile[newFile.length-1]);
-			storeWebsites();
-			displayOmittedFiles(websites[index]);
-			displayFilesToDownload(websites[index]);			
+			for(var i=0;i<websites.length;i++){
+				if(websites[i].id === website.id){
+					index = i;
+					break;
+				}
+			}
+			if(index<websites.length){
+				websites[index].linksToDownload.splice(ind,1);		
+				websites[index].filesOmitted.push(newFile[newFile.length-1]);
+				storeWebsites();
+				displayOmittedFiles(websites[index]);
+				displayFilesToDownload(websites[index]);		
+			}
 		}; 
 		var column1 = document.createElement("th");
 		column1.appendChild(omitFileButton);
@@ -79,11 +100,18 @@ function displayOmittedFiles(website){
 		admitFileButton.style.position = "relative";
 		var ind = i;
 		admitFileButton.onclick = function() {
-			var index = websites.indexOf(website);
-			websites[index].filesOmitted.splice(ind,1);
-			storeWebsites();
-			displayOmittedFiles(websites[index]);
-			checkNewFiles(websites[index]);				
+			for(var i=0;i<websites.length;i++){
+				if(websites[i].id === website.id){
+					index = i;
+					break;
+				}
+			}
+			if(index<websites.length){
+				websites[index].filesOmitted.splice(ind,1);
+				storeWebsites();
+				displayOmittedFiles(websites[index]);
+				checkNewFiles(websites[index]);				
+			}
 		}; 
 		
 		var column1 = document.createElement("th");
@@ -128,12 +156,18 @@ function displayDownloadedFiles(website){
 		deleteDownloadedFileButton.style.left = "20px";
 		var ind = i;
 		deleteDownloadedFileButton.onclick = function() {
-			var index = websites.indexOf(website);
-			console.log(index);
-			websites[index].filesDownloaded.splice(ind,1);			
-			storeWebsites();
-			checkNewFiles(websites[index]);	
-			displayDownloadedFiles(websites[index]);
+			for(var i=0;i<websites.length;i++){
+				if(websites[i].id === website.id){
+					index = i;
+					break;
+				}
+			}
+			if(index<websites.length){
+				websites[index].filesDownloaded.splice(ind,1);			
+				storeWebsites();
+				checkNewFiles(websites[index]);	
+				displayDownloadedFiles(websites[index]);
+			}
 		}; 
 		var column2 = document.createElement("th");
 		column2.appendChild(deleteDownloadedFileButton);

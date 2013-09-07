@@ -6,48 +6,14 @@ function backgroundInit(){
 	websites.forEach(setAlarms);	
 }
 
-chrome.alarms.onAlarm.addListener(function(alarm) {
-	var website = "";
-	var index;
-	for(var i=0;i<websites.length;i++){
-		if(websites[i].id.toString() === alarm.name){
-			website = websites[i];
-			index = i;
-			break;
-		}
-	}
-	console.log(websites);
-	console.log(website);
-	
-	if(website !== ""){
-		downloadOrStore(website);		
-	} 
-	
-	chrome.alarms.clear(alarm.name);
-	setAlarms(website);
-	
-
-});
-
-
-//This downloads or Store the links depending on the website parameters
-function downloadOrStore(website){
-	if(website.schedule.download){
-		retrieveFilesURLs(website,downloadFiles);
-	} else {
-		retrieveFilesURLs(website,storeDownloadableFiles);
-	}
-	chrome.runtime.sendMessage({type: "printURLs"});
-}
-
 
 function setAlarms(website){
 	if(website !== ""){
 		var schedule = website.schedule;
-		schedule.lastCheck = new Date(schedule.lastCheck);
-		schedule.lastCheck.setMinutes(schedule.lastCheck.getMinutes() - 2);
+		var scheduleLastCheck = new Date(schedule.lastCheck);
+		scheduleLastCheck.setMinutes(scheduleLastCheck.getMinutes()-1);
 		var type = schedule.typeSched;
-		//This will make a check if it has never done one on that website 
+
 
 			
 		switch (type){
@@ -55,7 +21,7 @@ function setAlarms(website){
 			case "hourly":
 				
 
-				if(schedule.lastCheck.setHours(schedule.lastCheck.getHours() +1) < new Date()){
+				if(scheduleLastCheck.setHours(scheduleLastCheck.getHours() +1) < new Date()){
 					downloadOrStore(website);
 				}
 				
@@ -72,14 +38,18 @@ function setAlarms(website){
 			
 			case "daily":
 				
-				if(schedule.lastCheck.setDate(schedule.lastCheck.getDate() +1) < new Date()){
+				if(scheduleLastCheck.setDate(scheduleLastCheck.getDate() +1) < new Date()){
 					downloadOrStore(website);
 				}
 				
 				var nextCheck = new Date();
 				if(nextCheck.getHours() > schedule.atHour){
 					nextCheck.setDate(nextCheck.getDate() + 1);
-				} 
+					console.log(nextCheck);
+				} else if (nextCheck.getHours() == schedule.atHour && nextCheck.getMinutes() > schedule.atMin){
+					nextCheck.setDate(nextCheck.getDate() + 1);
+					console.log(nextCheck);
+				}
 				nextCheck.setHours(schedule.atHour);
 				nextCheck.setMinutes(schedule.atMin);
 				nextCheck.setSeconds(0);
@@ -88,7 +58,7 @@ function setAlarms(website){
 			
 			case "weekly":
 			
-				if(schedule.lastCheck.setDate(schedule.lastCheck.getDate() + 7) < new Date())
+				if(scheduleLastCheck.setDate(scheduleLastCheck.getDate() + 7) < new Date())
 					downloadOrStore(website);
 				
 				
@@ -109,7 +79,9 @@ function setAlarms(website){
 				} else{
 					if(nextCheck.getHours() > schedule.atHour){
 						nextCheck.setDate(nextCheck.getDate() + 7);
-					} 
+					} else if (nextCheck.getHours() == schedule.atHour && nextCheck.getMinutes() > schedule.atMin){
+						nextCheck.setDate(nextCheck.getDate() + 7);
+					}
 				}
 				nextCheck.setHours(schedule.atHour);
 				nextCheck.setMinutes(schedule.atMin);
@@ -120,23 +92,20 @@ function setAlarms(website){
 			case "monthly":
 				
 				var nextCheck = new Date();
-				if(schedule.lastCheck.getYear() < nextCheck.getYear() && ((nextCheck.getMonth !== 0) || schedule.lastCheck !== 11))	{
+				if(scheduleLastCheck.getYear() < nextCheck.getYear() && ((nextCheck.getMonth !== 0) || scheduleLastCheck.getMonth() !== 11))	{
 					downloadOrStore(website);
-				} else if (schedule.lastCheck.getMonth()+1 < nextCheck.getMonth()){
+				} else if (scheduleLastCheck.getMonth()+1 < nextCheck.getMonth()){
 					downloadOrStore(website);
-				} else if (schedule.lastCheck.setMonth(schedule.lastCheck.getMonth()+1)  < nextCheck){
+				} else if (scheduleLastCheck.setMonth(scheduleLastCheck.getMonth()+1)  < nextCheck){
 					downloadOrStore(website);
 				}
 				
 		
 				if(nextCheck.getDate() > parseInt(schedule.atDay)){
-					console.log(1);
 					nextCheck.setMonth(nextCheck.getMonth()+1);
 				} else if (nextCheck.getDate() == schedule.atDay && nextCheck.getHours() > schedule.atHour){
-					console.log(2);
 					nextCheck.setMonth(nextCheck.getMonth()+1);
-				} else if (nextCheck.getDate() == schedule.atDay && nextCheck.getHours() == schedule.atHour && schedule.getMinutes() > schedule.atMin){
-					console.log(3);
+				} else if (nextCheck.getDate() == schedule.atDay && nextCheck.getHours() == schedule.atHour && nextCheck.getMinutes() > schedule.atMin){
 					nextCheck.setMonth(nextCheck.getMonth()+1);
 				}
 				if(schedule.atDay == 29 || schedule.atDay ==30 || schedule.atDay == 31){
@@ -154,3 +123,26 @@ function setAlarms(website){
 		}			
 	}
 }
+
+chrome.alarms.onAlarm.addListener(function(alarm) {
+	var website = "";
+	var index;
+	for(var i=0;i<websites.length;i++){
+		if(websites[i].id.toString() === alarm.name){
+			website = websites[i];
+			index = i;
+			break;
+		}
+	}
+	
+	if(website !== ""){
+		downloadOrStore(website);		
+	} 
+	
+	chrome.alarms.clear(alarm.name);
+	setAlarms(website);
+	
+
+});
+
+

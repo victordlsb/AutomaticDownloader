@@ -2,7 +2,7 @@
 	width: 780px; 
 	height: 500px;
 	background-color: white;
-	overflow-y: scroll;
+	overflow-y: hidden;
 	overflow-x: hidden;
 	font-family: Helvetica, Arial, Sans-Serif;
 	font-size: 11px;

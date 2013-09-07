@@ -104,6 +104,7 @@ function mainPopupListener(){
 	}
 	chrome.runtime.onMessage.addListener(function(request){
 		if(request.type = "printURLs"){
+			console.log("roger");
 			printrURLs();
 		}
 	});

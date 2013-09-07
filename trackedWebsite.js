@@ -1,9 +1,8 @@
 //Creates a TrackedWebsite object
 
-var TrackedWebsite = function(url,extensions,name,destinationFolder,schedule){
+var TrackedWebsite = function(url,extensions,name,destinationFolder,schedule,date){
 	//The ID will be the date it was created
-	this.dateOfCreation = new Date();
-	this.id = this.dateOfCreation.getTime();
+	this.id = date;
 	//extensions should be a string with all the extensions separated by ',' 
 	this.extensions = extensions;
 	//url: A string containing the URL to track

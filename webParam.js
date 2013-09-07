@@ -238,13 +238,13 @@ function saveChanges(index){
 			document.getElementById("paramHour").value,
 			document.getElementById("paramMin").value);	
 		websites[index].schedule = schedule;
+		setAlarms(websites[index]);
 		changesMade= true;
 	}
 	if(changesMade){
 		chrome.alarms.clear(websites[index].id.toString());
 		storeWebsites();
 		websites = getAllWebsites();
-		setAlarms(websites[index]);
 		printURLs();
 	}
 }

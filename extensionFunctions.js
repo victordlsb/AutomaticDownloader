@@ -29,6 +29,7 @@ function removeAndReloadWebsites(){
 }
 
 function returnToMain(){
+	printURLs();
 	document.getElementById("main").style.visibility = "visible";
 	document.getElementById("webParam").style.visibility = "hidden";
 	document.getElementById("addPopup").style.visibility = "hidden";
@@ -37,6 +38,7 @@ function returnToMain(){
 	document.getElementById("onDay").style.visibility = "hidden";
 	document.getElementById("paramHour").style.visibility = "hidden";
 	document.getElementById("paramOnDay").style.visibility = "hidden";
+	
 }
 
 function printAlarmsLog(){
@@ -53,13 +55,27 @@ function printAlarmsLog(){
 	});
 }
 
+//This downloads or Store the links depending on the website parameters
+function downloadOrStore(website){
+	if(website.schedule.download){
+		retrieveFilesURLs(website,downloadNewFiles);
+	} else {
+		retrieveFilesURLs(website,checkNewFiles);
+	}
+}
+
 
 function downloadFiles(files,website){
 	//TODO check if end of the url correspond to the filename. If not, not download
 	destFolder = website.destinationFolder;
-	var index = websites.indexOf(website);
+	for(var i=0;i<websites.length;i++){
+		if(websites[i].id === website.id){
+			index = i;
+			break;
+		}
+	}
 	var date = new Date();
-	date.toString();
+	date = date.toString();
 	for(var i=0;i<files.length;i++){
 		//Looks for the name of the file by splitting the string of the URL and checking the last member of the array
 		arrayFiles = files[i].split("/");
@@ -92,17 +108,23 @@ function downloadFiles(files,website){
 	websites[index].linksToDownload = [];
 	websites[index].schedule.lastCheck = date;
 	storeWebsites();
+	return websites[index];
 	
 }
 
 function storeDownloadableFiles(files,website){
-	var index = websites.indexOf(website);
+	for(var i=0;i<websites.length;i++){
+		if(websites[i].id === website.id){
+			index = i;
+			break;
+		}
+	}
 	var date = new Date();
 	date.toString();
 	websites[index].linksToDownload = files;
 	websites[index].schedule.lastCheck = date;
 	storeWebsites();
-	printURLs;
+	return websites[index];
 }
 
 function checkLastModified(url){
