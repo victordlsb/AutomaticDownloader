@@ -17,6 +17,10 @@ function setAlarms(website){
 
 			
 		switch (type){
+		
+			case "never":
+				return;
+			break;
 			
 			case "hourly":
 				
@@ -125,6 +129,7 @@ function setAlarms(website){
 }
 
 chrome.alarms.onAlarm.addListener(function(alarm) {
+	console.log(alarm.name + " alarm activated");
 	var website = "";
 	var index;
 	for(var i=0;i<websites.length;i++){

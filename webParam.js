@@ -12,17 +12,38 @@ function webParamListener(website,index){
 	for(var i=0;i<checkboxes.length;i++){
 		checkboxes[i].onclick = function () { paramModified = true; extensionsModified = true; };
 	}
+	document.getElementById("paramNever").onclick = function() {disableParamSchedForms();};
+	document.getElementById("paramDownload").onclick = function() {enableParamSchedForms();};
+	document.getElementById("paramCheck").onclick = function() {enableParamSchedForms();};
 	paramScheduleLoader(website);
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("webParam").style.visibility = "visible";
 }
 
+function enableParamSchedForms(){
+	document.getElementById("paramBasis").disabled = false;
+	document.getElementById("paramHour").disabled = false;
+	document.getElementById("paramMin").disabled = false;
+	document.getElementById("paramDay").disabled = false;
+}
+function disableParamSchedForms(){
+	document.getElementById("paramBasis").disabled = true;
+	document.getElementById("paramHour").disabled = true;
+	document.getElementById("paramMin").disabled = true;
+	document.getElementById("paramDay").disabled = true;
+}
+
 function paramScheduleLoader(website){
 	
-	if(website.schedule.download)
+	if(website.schedule.download){
 		document.getElementById("paramDownload").checked = true;
-	else
+	} else {
 		document.getElementById("paramCheck").checked = true;
+	}
+	if (website.schedule.typeSched === "never"){
+		document.getElementById("paramNever").checked = true;
+		disableSchedForms();
+	}
 	paramBasisListener(website.schedule.typeSched);
 	hourSelect = document.getElementById("paramHour");
 	hourSelect.innerHTML = "";
@@ -46,7 +67,7 @@ function paramScheduleLoader(website){
 			opt.innerHTML = i*15;
 		minSelect.appendChild(opt);
 	}
-	document.getElementById("paramBasis").value = website.schedule.typeSched;
+	document.getElementById("paramBasis").value = website.schedule.typeSched === "never" ? "daily" : website.schedule.typeSched;
 	document.getElementById("paramDay").value = website.schedule.atDay;
 	document.getElementById("paramHour").value = website.schedule.atHour;
 	document.getElementById("paramMin").value = website.schedule.atMin;
@@ -231,9 +252,10 @@ function saveChanges(index){
 			changesMade = true;
 	}
 	if(scheduleModified){
+		var basis = document.getElementById("paramNever").checked ? document.getElementById("paramNever").value : document.getElementById("paramBasis").value;
 		var schedule = new Schedule(
 			document.getElementById("paramDownload").checked,
-			document.getElementById("paramBasis").value,
+			basis,
 			document.getElementById("paramDay").value,
 			document.getElementById("paramHour").value,
 			document.getElementById("paramMin").value);	

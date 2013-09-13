@@ -22,6 +22,9 @@ function displayAddPopup(){
 	addScheduleListener();
 	document.getElementById("main").style.visibility = "hidden";
 	document.getElementById("addPopup").style.visibility = "visible";
+	document.getElementById("addNever").onclick = function() {disableAddSchedForms();};
+	document.getElementById("addDownload").onclick = function() {enableAddSchedForms();};
+	document.getElementById("addCheck").onclick = function() {enableAddSchedForms();};
 
 }
 
@@ -122,6 +125,19 @@ function setNewDestFormBehaviour(){
 	}
 }
 
+function enableAddSchedForms(){
+	document.getElementById("addBasis").disabled = false;
+	document.getElementById("addHour").disabled = false;
+	document.getElementById("addMin").disabled = false;
+	document.getElementById("addDay").disabled = false;
+}
+function disableAddSchedForms(){
+	document.getElementById("addBasis").disabled = true;
+	document.getElementById("addHour").disabled = true;
+	document.getElementById("addMin").disabled = true;
+	document.getElementById("addDay").disabled = true;
+}
+
 function setAddURLButton(){
 	addButton=document.getElementById("addURL");
 	addButton.onclick =  addURL;
@@ -139,9 +155,10 @@ function setAddURLButton(){
 function addURL(){
 
 	//Check for the schedule to download the files
+	var basis = document.getElementById("addNever").checked ? document.getElementById("addNever").value : document.getElementById("addBasis").value;
 	var schedule = new Schedule(
 		document.getElementById("addDownload").checked,
-		document.getElementById("addBasis").value,
+		basis,
 		document.getElementById("addDay").value,
 		document.getElementById("addHour").value,
 		document.getElementById("addMin").value);	
