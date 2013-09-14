@@ -80,6 +80,8 @@ function downloadAllFiles(){
 	for(var i=0;i<websites.length;i++){
 		clickDownloadFiles(websites[i]);
 	}
+	
+	console.log(endDate - initDate);
 }
 
 function inspectAllWebsites(){
@@ -111,9 +113,29 @@ function mainPopupListener(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+//	localStorage.removeItem('websites');
 	main();
 	mainPopupListener();
 	addPopupListener();
+
+	var testMode = true;
+	if(testMode){
+		document.getElementById("test").style.visibility = "visible";
+		document.getElementById("test").style.background = "orange";
+		document.getElementById("test").onclick = function() {
+			
+			var website = testWebsite();
+			var webs100 = test100WebArray();
+			var webs500 = test500WebArray();
+	//		test50Downloads(website);
+	//		test100Downloads(website);
+	//		websitesPrint(webs100);
+	//		websitesPrint(webs500);
+	//		inspectAllWebsites();
+	//		downloadAllFiles();
+			
+		}
+	}
 	console.log(websites);
 });
 

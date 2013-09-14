@@ -1,8 +1,10 @@
 var websites = new Array();
 var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+//Avoids the modification of the variable weekDays.
 Object.freeze (weekDays);
 
+//Saves the variable websites in the localStorage
 function storeWebsites(){
 	localStorage.removeItem("websites");
 	localStorage.websites=JSON.stringify(websites);
@@ -11,7 +13,7 @@ function storeWebsites(){
 
 }
 
-
+//Returns the websites saved in the localStorage
 function getAllWebsites(){
 	if (localStorage.websites === undefined){
 		return new Array();
@@ -28,6 +30,7 @@ function removeAndReloadWebsites(){
 	localStorage.websites=JSON.stringify(websites);
 }
 
+//Prints the main Screen
 function returnToMain(){
 	printURLs();
 	document.getElementById("main").style.visibility = "visible";
@@ -64,7 +67,7 @@ function downloadOrStore(website){
 	}
 }
 
-
+//Download the files from the website
 function downloadFiles(files,website){
 	//TODO check if end of the url correspond to the filename. If not, not download
 	destFolder = website.destinationFolder;
@@ -112,6 +115,7 @@ function downloadFiles(files,website){
 	
 }
 
+//Store the files to be downloaded on the website 
 function storeDownloadableFiles(files,website){
 	for(var i=0;i<websites.length;i++){
 		if(websites[i].id === website.id){
@@ -127,6 +131,7 @@ function storeDownloadableFiles(files,website){
 	return websites[index];
 }
 
+//Checks when a website has been last modified through its url
 function checkLastModified(url){
 	xhraux = new XMLHttpRequest();
 	xhraux.open("GET",url,false);
@@ -137,7 +142,7 @@ function checkLastModified(url){
 	return lastMode;
 }
 
-//TODO add a format checking
+
 //Transforms an string of extensions separated by commas (",") for an array 
 //and adds them to the array provided if it does not contain it
 function extToArray(extensions,otherExtensions){

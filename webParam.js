@@ -3,6 +3,7 @@ var paramModified = false;
 var extensionsModified = false;
 var scheduleModified = false;
 
+//Creates the listeners and the elements of the website parameters screen
 function webParamListener(website,index){
 	displayWebParameters(website);
 	setDeleteWebButton(index);
@@ -20,12 +21,15 @@ function webParamListener(website,index){
 	document.getElementById("webParam").style.visibility = "visible";
 }
 
+//enables the schedule forms
 function enableParamSchedForms(){
 	document.getElementById("paramBasis").disabled = false;
 	document.getElementById("paramHour").disabled = false;
 	document.getElementById("paramMin").disabled = false;
 	document.getElementById("paramDay").disabled = false;
 }
+
+//disable the schedule forms
 function disableParamSchedForms(){
 	document.getElementById("paramBasis").disabled = true;
 	document.getElementById("paramHour").disabled = true;
@@ -33,6 +37,7 @@ function disableParamSchedForms(){
 	document.getElementById("paramDay").disabled = true;
 }
 
+//Loads the different options for the schedule
 function paramScheduleLoader(website){
 	
 	if(website.schedule.download){
@@ -76,6 +81,7 @@ function paramScheduleLoader(website){
 	}
 }
 
+//Changes the schedule options depending on the basis of the schedule
 function paramBasisListener(basis){
 	switch (basis){
 		case"hourly":
@@ -134,6 +140,7 @@ function extToString(ext){
 	return extString;
 }
 
+//Sets the save changes button
 function setSaveChangesButton(index){
 	var saveChangesButton = document.getElementById("saveChanges");
 	saveChangesButton.onclick = function (){ 

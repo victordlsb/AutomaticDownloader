@@ -1,12 +1,13 @@
 backgroundInit();
 
+//Executed when chrome is initialised 
 function backgroundInit(){
 	chrome.alarms.clearAll();
 	websites = getAllWebsites();
 	websites.forEach(setAlarms);	
 }
 
-
+// Set the alarms for a given website
 function setAlarms(website){
 	if(website !== ""){
 		var schedule = website.schedule;
@@ -49,10 +50,8 @@ function setAlarms(website){
 				var nextCheck = new Date();
 				if(nextCheck.getHours() > schedule.atHour){
 					nextCheck.setDate(nextCheck.getDate() + 1);
-					console.log(nextCheck);
 				} else if (nextCheck.getHours() == schedule.atHour && nextCheck.getMinutes() > schedule.atMin){
 					nextCheck.setDate(nextCheck.getDate() + 1);
-					console.log(nextCheck);
 				}
 				nextCheck.setHours(schedule.atHour);
 				nextCheck.setMinutes(schedule.atMin);
@@ -112,11 +111,14 @@ function setAlarms(website){
 				} else if (nextCheck.getDate() == schedule.atDay && nextCheck.getHours() == schedule.atHour && nextCheck.getMinutes() > schedule.atMin){
 					nextCheck.setMonth(nextCheck.getMonth()+1);
 				}
-				if(schedule.atDay == 29 || schedule.atDay ==30 || schedule.atDay == 31){
+				if(schedule.atDay == 31){
 					if(nextCheck.getMonth() === 1 || nextCheck.getMonth() ===3 || nextCheck.getMonth() === 5 || nextCheck.getMonth() === 8 || nextCheck.getMonth() ===10){
 						nextCheck.setDate(1);
 						nextCheck.setMonth(nextCheck.getMonth() + 1);
 					}
+				} else if ((schedule.atDay == 29 || schedule.atDay ==30) & nextCheck.getMonth() == 1){
+						nextCheck.setDate(1);
+						nextCheck.setMonth(nextCheck.getMonth() + 1);
 				} else {
 					nextCheck.setDate(schedule.atDay);
 				}
@@ -128,6 +130,7 @@ function setAlarms(website){
 	}
 }
 
+//Executes the code when the alarm awakes the system
 chrome.alarms.onAlarm.addListener(function(alarm) {
 	console.log(alarm.name + " alarm activated");
 	var website = "";
@@ -145,8 +148,7 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 	} 
 	
 	chrome.alarms.clear(alarm.name);
-	setAlarms(website);
-	
+	setAlarms(website);	
 
 });
 

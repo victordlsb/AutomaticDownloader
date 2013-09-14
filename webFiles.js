@@ -1,3 +1,4 @@
+//listens  and creates the elements of the webFiles website
 function webFilesListener(website){
 	document.getElementById("closeWebFiles").onclick = function (){ returnToMain();};
 	document.getElementById("webFilesName").innerHTML = website.name;
@@ -10,6 +11,7 @@ function webFilesListener(website){
 	document.getElementById("webFiles").style.visibility = "visible";
 }
 
+//Download the new files from a website
 function downloadNewFiles(website){
 	retrieveFilesURLs(website,function(files,website){ 
 		var inMain = false;
@@ -25,7 +27,7 @@ function downloadNewFiles(website){
 	});
 }
 
-
+//Checks for new files
 function checkNewFiles(website){
 	retrieveFilesURLs(website, function(files,website){
 		var inMain = false;
@@ -41,6 +43,7 @@ function checkNewFiles(website){
 	});
 }
 
+//Displays the files to download and the omit buttons
 function displayFilesToDownload(website){
 	newFilesDiv = document.getElementById("newFiles");
 	newFilesDiv.innerHTML = "";
@@ -82,6 +85,7 @@ function displayFilesToDownload(website){
 	}
 }
 
+//display the omitted files and the admit buttons
 function displayOmittedFiles(website){
 	omittedFilesDiv = document.getElementById("omittedFiles");
 	omittedFilesDiv.innerHTML = "<h3 class='h3'>Omitted Files</h3>";
@@ -123,6 +127,7 @@ function displayOmittedFiles(website){
 	}
 }
 
+//Display the download files and the set to redownload button
 function displayDownloadedFiles(website){
 	downFilesDiv = document.getElementById("downloadedFiles");
 	downFilesDiv.innerHTML = "";
